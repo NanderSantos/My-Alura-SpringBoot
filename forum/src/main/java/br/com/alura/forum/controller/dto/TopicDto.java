@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.data.domain.Page;
+
 import br.com.alura.forum.model.Topic;
 
 public class TopicDto {
@@ -37,10 +39,8 @@ public class TopicDto {
 		return creationDate;
 	}
 
-	public static List<TopicDto> convert(List<Topic> topics) {
+	public static Page<TopicDto> convert(Page<Topic> topics) {
 		
-		return topics.stream()
-				.map(TopicDto::new)
-				.collect(Collectors.toList());
+		return topics.map(TopicDto::new);
 	}	
 }
