@@ -1,6 +1,5 @@
 package br.com.alura.forum.controller;
 
-import javax.naming.AuthenticationException;
 import javax.validation.Valid;
 
 import org.h2.security.auth.AuthConfigException;
