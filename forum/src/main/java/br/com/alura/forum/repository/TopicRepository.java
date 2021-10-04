@@ -8,6 +8,5 @@ import br.com.alura.forum.model.Topic;
 
 public interface TopicRepository extends JpaRepository<Topic, Long> {
 
-	
 	Page<Topic> findByCourse_Name(String courseName, Pageable pagination);
 }

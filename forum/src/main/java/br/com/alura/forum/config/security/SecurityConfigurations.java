@@ -3,6 +3,7 @@ package br.com.alura.forum.config.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -18,51 +19,52 @@ import br.com.alura.forum.repository.UserRepository;
 
 @EnableWebSecurity
 @Configuration
+@Profile("prod")
 public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private AuthenticationService authenticationService;
-	
-	@Autowired
-	private TokenService tokenService;
+    @Autowired
+    private AuthenticationService authenticationService;
 
-	@Autowired
-	private UserRepository userRespository;
-	
-	@Override
-	@Bean
-	protected AuthenticationManager authenticationManager() throws Exception {
-		
-		return super.authenticationManager();
-	}
-	
-	// Configurações de autenticação
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		
-		auth.userDetailsService(authenticationService).passwordEncoder(new BCryptPasswordEncoder());
-	}
+    @Autowired
+    private TokenService tokenService;
 
-	// configurações de autorização
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
+    @Autowired
+    private UserRepository userRespository;
 
-		http.authorizeRequests()
-			.antMatchers(HttpMethod.GET, "/topics").permitAll()
-			.antMatchers(HttpMethod.GET, "/topics/*").permitAll()
-			.antMatchers(HttpMethod.POST, "/auth").permitAll()
-			.antMatchers(HttpMethod.GET, "/actuator/**").permitAll()
-			.antMatchers(HttpMethod.DELETE, "/topics/*").hasRole("MODERATOR")
-			.anyRequest().authenticated()
-			.and().csrf().disable()
-			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-			.and().addFilterBefore(new TokenAuthenticationFilter(this.tokenService, this.userRespository), UsernamePasswordAuthenticationFilter.class);
-	}
+    @Override
+    @Bean
+    protected AuthenticationManager authenticationManager() throws Exception {
 
-	// Configurações de recursos estáticos (js, css, imagens, etc)
-	@Override
-	public void configure(WebSecurity web) throws Exception {
-	    web.ignoring()
-	        .antMatchers("/**.html", "/v2/api-docs", "/webjars/**", "/configuration/**", "/swagger-resources/**");
-	}
+        return super.authenticationManager();
+    }
+
+    // Configurações de autenticação
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+
+        auth.userDetailsService(authenticationService).passwordEncoder(new BCryptPasswordEncoder());
+    }
+
+    // configurações de autorização
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+
+        http.authorizeRequests()
+                .antMatchers(HttpMethod.GET, "/topics").permitAll()
+                .antMatchers(HttpMethod.GET, "/topics/*").permitAll()
+                .antMatchers(HttpMethod.POST, "/auth").permitAll()
+                .antMatchers(HttpMethod.GET, "/actuator/**").permitAll()
+                .antMatchers(HttpMethod.DELETE, "/topics/*").hasRole("MODERATOR")
+                .anyRequest().authenticated()
+                .and().csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().addFilterBefore(new TokenAuthenticationFilter(this.tokenService, this.userRespository), UsernamePasswordAuthenticationFilter.class);
+    }
+
+    // Configurações de recursos estáticos (js, css, imagens, etc)
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring()
+                .antMatchers("/**.html", "/v2/api-docs", "/webjars/**", "/configuration/**", "/swagger-resources/**");
+    }
 }

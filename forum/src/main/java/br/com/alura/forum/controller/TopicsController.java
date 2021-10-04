@@ -1,7 +1,6 @@
 package br.com.alura.forum.controller;
 
 import java.net.URI;
-import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
@@ -39,87 +37,87 @@ import br.com.alura.forum.repository.TopicRepository;
 @RequestMapping("/topics")
 public class TopicsController {
 
-	@Autowired
-	private TopicRepository topicRepository;
+    @Autowired
+    private TopicRepository topicRepository;
 
-	@Autowired
-	private CourseRepository courseRepository;
+    @Autowired
+    private CourseRepository courseRepository;
 
-	@GetMapping
-	@Cacheable(value = "topicList")
-	public Page<TopicDto> list(@RequestParam(required = false) String courseName, @PageableDefault(sort = "id", direction = Direction.DESC, page = 0, size = 10) Pageable pagination) {
-		
-		if (courseName == null) {
+    @GetMapping
+    @Cacheable(value = "topicList")
+    public Page<TopicDto> list(@RequestParam(required = false) String courseName, @PageableDefault(sort = "id", direction = Direction.DESC, page = 0, size = 10) Pageable pagination) {
 
-			Page<Topic> topics = topicRepository.findAll(pagination);
-			return TopicDto.convert(topics);
+        if (courseName == null) {
 
-		} else {
+            Page<Topic> topics = topicRepository.findAll(pagination);
+            return TopicDto.convert(topics);
 
-			Page<Topic> topics = topicRepository.findByCourse_Name(courseName, pagination);
-			return TopicDto.convert(topics);
-		}
-	}
+        } else {
 
-	@GetMapping("/{id}")
-	public ResponseEntity<DetailedTopicDto> get(@PathVariable Long id) {
+            Page<Topic> topics = topicRepository.findByCourse_Name(courseName, pagination);
+            return TopicDto.convert(topics);
+        }
+    }
 
-		Optional<Topic> optional = topicRepository.findById(id);
+    @GetMapping("/{id}")
+    public ResponseEntity<DetailedTopicDto> get(@PathVariable Long id) {
 
-		if (optional.isPresent()) {
+        Optional<Topic> optional = topicRepository.findById(id);
 
-			return ResponseEntity.ok(new DetailedTopicDto(optional.get()));
+        if (optional.isPresent()) {
 
-		} else {
+            return ResponseEntity.ok(new DetailedTopicDto(optional.get()));
 
-			return ResponseEntity.notFound().build();
-		}
-	}
+        } else {
 
-	@PostMapping
-	@Transactional
-	@CacheEvict(value = "topicList", allEntries = true)
-	public ResponseEntity<TopicDto> create(@RequestBody @Valid TopicForm form, UriComponentsBuilder uriBuilder) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
-		Topic topic = form.convert(courseRepository);
+    @PostMapping
+    @Transactional
+    @CacheEvict(value = "topicList", allEntries = true)
+    public ResponseEntity<TopicDto> create(@RequestBody @Valid TopicForm form, UriComponentsBuilder uriBuilder) {
 
-		topicRepository.save(topic);
+        Topic topic = form.convert(courseRepository);
 
-		URI uri = uriBuilder.path("/topics/{id}").buildAndExpand(topic.getId()).toUri();
+        topicRepository.save(topic);
 
-		return ResponseEntity.created(uri).body(new TopicDto(topic));
-	}
+        URI uri = uriBuilder.path("/topics/{id}").buildAndExpand(topic.getId()).toUri();
 
-	@PutMapping("/{id}")
-	@Transactional
-	@CacheEvict(value = "topicList", allEntries = true)
-	public ResponseEntity<TopicDto> update(@PathVariable Long id, @RequestBody @Valid UpdateTopicForm form) {
+        return ResponseEntity.created(uri).body(new TopicDto(topic));
+    }
 
-		Optional<Topic> optional = topicRepository.findById(id);
+    @PutMapping("/{id}")
+    @Transactional
+    @CacheEvict(value = "topicList", allEntries = true)
+    public ResponseEntity<TopicDto> update(@PathVariable Long id, @RequestBody @Valid UpdateTopicForm form) {
 
-		if (optional.isPresent()) {
+        Optional<Topic> optional = topicRepository.findById(id);
 
-			Topic topic = form.update(id, topicRepository);
-			return ResponseEntity.ok(new TopicDto(topic));
-		}
+        if (optional.isPresent()) {
 
-		return ResponseEntity.notFound().build();
-	}
+            Topic topic = form.update(id, topicRepository);
+            return ResponseEntity.ok(new TopicDto(topic));
+        }
 
-	@DeleteMapping("/{id}")
-	@Transactional
-	@CacheEvict(value = "topicList", allEntries = true)
-	public ResponseEntity<?> delete(@PathVariable Long id) {
+        return ResponseEntity.notFound().build();
+    }
 
-		Optional<Topic> optional = topicRepository.findById(id);
+    @DeleteMapping("/{id}")
+    @Transactional
+    @CacheEvict(value = "topicList", allEntries = true)
+    public ResponseEntity<?> delete(@PathVariable Long id) {
 
-		if (optional.isPresent()) {
+        Optional<Topic> optional = topicRepository.findById(id);
 
-			topicRepository.deleteById(id);
+        if (optional.isPresent()) {
 
-			return ResponseEntity.ok().build();
-		}
+            topicRepository.deleteById(id);
 
-		return ResponseEntity.notFound().build();
-	}
+            return ResponseEntity.ok().build();
+        }
+
+        return ResponseEntity.notFound().build();
+    }
 }
