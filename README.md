@@ -9,8 +9,10 @@
 
 ---
 
-Alura's Spring Boot courses. Previous spring project: https://github.com/NanderSantos/My-SpringAPI
+Alura's Spring Boot courses.
 
+- The application is hosted at the address: https://my-alura-springboot.herokuapp.com/
+- Checkout the [API Documentation](https://my-alura-springboot.herokuapp.com/swagger-ui.html#)
 ---
 
 ## First Course: "Spring Boot API REST: Contrua uma API" ✔ 
@@ -34,3 +36,22 @@ Main topics:
 - Spring Boot Actuator;
 - Spring Boot Admin;
 - API Documentation with SpringFox Swagger;
+
+---
+
+## Third Course: "Spring Boot e Teste: Profiles, Testes e Deploy" ✔ 
+
+Main topics:
+
+- Spring update
+- Unit Tests using JUnit
+- Spring Profiles
+- .jar Deploy x .war Deploy
+- [Docker](https://docs.docker.com/engine/install/ubuntu/) Deploy
+- [Heroku](https://devcenter.heroku.com/articles/container-registry-and-runtime) Docker Deploy
+
+---
+
+## Previous Spring Courses
+
+Previous spring project: https://github.com/NanderSantos/My-SpringAPI
