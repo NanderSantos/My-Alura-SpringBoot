@@ -19,7 +19,7 @@ import br.com.alura.forum.repository.UserRepository;
 
 @EnableWebSecurity
 @Configuration
-@Profile(value = { "prod", "test" })
+@Profile(value = { "prod", "test", "default" })
 public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 
     @Autowired
