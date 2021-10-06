@@ -13,7 +13,10 @@ Alura's Spring Boot courses.
 
 - The application is hosted at the address: https://my-alura-springboot.herokuapp.com/
 - Checkout the [API Documentation](https://my-alura-springboot.herokuapp.com/swagger-ui.html#)
+
 ---
+
+# Spring Framework
 
 ## First Course: "Spring Boot API REST: Contrua uma API" ✔ 
 
@@ -55,3 +58,21 @@ Main topics:
 ## Previous Spring Courses
 
 Previous spring project: https://github.com/NanderSantos/My-SpringAPI
+
+---
+
+# Java Basics
+
+## First Course: "Java moderno: Tire proveito dos novos recursos do Java 8" ✔ 
+
+Main topics:
+
+- [Default methods](https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html)
+- [Lambdas and Functional Interfaces](https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html)
+- [Method References](https://docs.oracle.com/javase/tutorial/java/javaOO/methodreferences.html)
+- [Streams and Collections](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html)
+- [Optionals](https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html)
+- [New LocalDate API](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html)
+- [New LocalTime API](https://docs.oracle.com/javase/8/docs/api/java/time/LocalTime.html)
+- [New LocalDateTime API](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html)
+- [New ZonedDateTime API](https://docs.oracle.com/javase/8/docs/api/java/time/ZonedDateTime.html)
