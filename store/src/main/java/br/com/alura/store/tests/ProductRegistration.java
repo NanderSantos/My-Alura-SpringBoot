@@ -1,28 +1,36 @@
 package br.com.alura.store.tests;
 
+import br.com.alura.store.dao.CategoryDao;
+import br.com.alura.store.dao.ProductDao;
+import br.com.alura.store.model.Category;
 import br.com.alura.store.model.Product;
+import br.com.alura.store.util.JPAUtil;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import java.math.BigDecimal;
 
 public class ProductRegistration {
 
     public static void main(String[] args) {
 
-        Product cell = new Product();
-        cell.setName("Xiaomi Redmi Note 10s");
-        cell.setDescription("Muito Legal!");
-        cell.setPrice(new BigDecimal(800));
+        Category category = new Category("CELL_PHONES");
 
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("store");
-        EntityManager entityManager = factory.createEntityManager();
+        Product cell = new Product(
+                "Xiaomi Redmi Note 10s",
+                "Muito Legal!",
+                new BigDecimal(800),
+                category
+        );
+
+        EntityManager entityManager = JPAUtil.getEntityManager();
+
+        ProductDao productDao = new ProductDao(entityManager);
+        CategoryDao categoryDao = new CategoryDao(entityManager);
+
         entityManager.getTransaction().begin();
-        entityManager.persist(cell);
+        categoryDao.save(category);
+        productDao.save(cell);
         entityManager.getTransaction().commit();
         entityManager.close();
-
-        System.out.println(cell.getPrice());
     }
 }
