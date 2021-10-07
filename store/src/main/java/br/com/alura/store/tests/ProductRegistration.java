@@ -58,10 +58,7 @@ public class ProductRegistration {
         entityManager.getTransaction().begin();
 
         categoryDao.save(category);
-        entityManager.flush();
-
         productDao.save(cell);
-        entityManager.flush();
 
         entityManager.getTransaction().commit();
         entityManager.close();
