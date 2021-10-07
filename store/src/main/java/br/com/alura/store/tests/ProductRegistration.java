@@ -28,8 +28,24 @@ public class ProductRegistration {
         CategoryDao categoryDao = new CategoryDao(entityManager);
 
         entityManager.getTransaction().begin();
+
         categoryDao.save(category);
+        category.setName("XPTO");
+        categoryDao.update(category);
+        entityManager.flush();
+
         productDao.save(cell);
+        entityManager.flush();
+
+        entityManager.clear();
+
+        category.setName("CELL_PHONES");
+        categoryDao.update(category);
+        entityManager.flush();
+
+        productDao.delete(cell);
+        entityManager.flush();
+
         entityManager.getTransaction().commit();
         entityManager.close();
     }
