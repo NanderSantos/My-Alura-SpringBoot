@@ -61,6 +61,21 @@ Previous spring project: https://github.com/NanderSantos/My-SpringAPI
 
 ---
 
+# JPA
+
+## First Course: "Persistência com JPA: Introdução ao Hibernate" ✔ 
+
+Main topics:
+
+- JPA x JDBC
+- Hibernate
+- Entitiy Definition
+- DAO
+- Insert, Update, Remove and Select
+- JPQL Queries
+
+---
+
 # Java Basics
 
 ## First Course: "Java moderno: Tire proveito dos novos recursos do Java 8" ✔ 
