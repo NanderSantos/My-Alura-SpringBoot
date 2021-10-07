@@ -1,9 +1,10 @@
 package br.com.alura.store.dao;
 
-import br.com.alura.store.model.Category;
 import br.com.alura.store.model.Product;
 
 import javax.persistence.EntityManager;
+import java.math.BigDecimal;
+import java.util.List;
 
 public class ProductDao {
 
@@ -27,5 +28,47 @@ public class ProductDao {
 
         product = this.entityManager.merge(product);
         this.entityManager.remove(product);
+    }
+
+    public Product findById(Long id) {
+
+        return this.entityManager.find(Product.class, id);
+    }
+
+    public List<Product> findAll() {
+
+        String jpql = "SELECT p FROM Product p";
+
+        return this.entityManager.createQuery(jpql, Product.class).getResultList();
+    }
+
+    public List<Product> findAllByName(String name) {
+
+        String jpql = "SELECT p FROM Product p WHERE p.name = :name";
+
+        return this.entityManager
+                .createQuery(jpql, Product.class)
+                .setParameter("name", name)
+                .getResultList();
+    }
+
+    public List<Product> findAllByCategoryName(String name) {
+
+        String jpql = "SELECT p FROM Product p WHERE p.category.name = :name";
+
+        return this.entityManager
+                .createQuery(jpql, Product.class)
+                .setParameter("name", name)
+                .getResultList();
+    }
+
+    public BigDecimal findProductPriceByName(String name) {
+
+        String jpql = "SELECT p.price FROM Product p WHERE p.name = :name";
+
+        return this.entityManager
+                .createQuery(jpql, BigDecimal.class)
+                .setParameter("name", name)
+                .getSingleResult();
     }
 }
