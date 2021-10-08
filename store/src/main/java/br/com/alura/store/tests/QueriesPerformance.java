@@ -6,11 +6,9 @@ import br.com.alura.store.dao.OrderDao;
 import br.com.alura.store.dao.ProductDao;
 import br.com.alura.store.model.*;
 import br.com.alura.store.util.JPAUtil;
-import br.com.alura.store.vo.SalesReportVo;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
-import java.util.List;
 
 public class QueriesPerformance {
 
