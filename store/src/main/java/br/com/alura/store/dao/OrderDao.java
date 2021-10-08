@@ -68,4 +68,14 @@ public class OrderDao {
 
         return this.entityManager.createQuery(jpql, Order.class).getResultList();
     }
+
+    public Order findOrderWithClient(Long id) {
+
+        String jpql = "SELECT o FROM Order o JOIN FETCH o.client WHERE o.id = :id";
+
+        return this.entityManager
+                .createQuery(jpql, Order.class)
+                .setParameter("id", id)
+                .getSingleResult();
+    }
 }

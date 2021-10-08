@@ -18,7 +18,7 @@ public class Product {
     private BigDecimal price;
     private LocalDate creationDate = LocalDate.now();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Category category;
 
     public Product() {

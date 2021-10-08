@@ -19,7 +19,7 @@ public class Order {
 
     private LocalDate date = LocalDate.now();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Client client;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL) // Necessário por ser um relacionamento bi-direcional (One Order) <=> (Many OrderItem)
