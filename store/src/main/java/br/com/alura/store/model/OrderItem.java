@@ -33,6 +33,11 @@ public class OrderItem {
         this.unitPrice = product.getPrice();
     }
 
+    public BigDecimal getTotalValue() {
+
+        return this.unitPrice.multiply(new BigDecimal(this.quantity));
+    }
+
     public Long getId() {
         return id;
     }

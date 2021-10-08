@@ -1,7 +1,7 @@
 package br.com.alura.store.dao;
 
 import br.com.alura.store.model.Order;
-import br.com.alura.store.model.Product;
+import br.com.alura.store.vo.SalesReportVo;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
@@ -13,6 +13,32 @@ public class OrderDao {
 
     public OrderDao(EntityManager entityManager) {
         this.entityManager = entityManager;
+    }
+
+    public BigDecimal totalValueSold() {
+
+        String jpql = "SELECT SUM(o.totalValue) FROM Order o";
+
+        return this.entityManager
+                .createQuery(jpql, BigDecimal.class)
+                .getSingleResult();
+    }
+
+    public List<SalesReportVo> salesReport() {
+
+        String jpql = "SELECT new br.com.alura.store.vo.SalesReportVo(" +
+                "p.name, " +
+                "SUM(i.quantity), " +
+                "MAX(o.date)) " +
+                "FROM Order o " +
+                "JOIN o.items i " +
+                "JOIN i.product p " +
+                "GROUP BY p.name " +
+                "ORDER BY i.quantity DESC";
+
+        return this.entityManager
+                .createQuery(jpql, SalesReportVo.class)
+                .getResultList();
     }
 
     public void save(Order order) {

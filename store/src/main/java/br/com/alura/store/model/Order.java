@@ -15,7 +15,7 @@ public class Order {
     private Long id;
 
     @Column(name = "total_value")
-    private BigDecimal totalValue;
+    private BigDecimal totalValue = BigDecimal.ZERO;
 
     private LocalDate date = LocalDate.now();
 
@@ -43,6 +43,7 @@ public class Order {
         // Importante para que os dois lados do relacionamento estejam ligados (Order e OrderItem)
         item.setOrder(this);
         this.items.add(item);
+        this.totalValue = this.totalValue.add(item.getTotalValue());
     }
 
     public Long getId() {

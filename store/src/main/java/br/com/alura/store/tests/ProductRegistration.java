@@ -9,7 +9,6 @@ import br.com.alura.store.util.JPAUtil;
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.ServiceConfigurationError;
 
 public class ProductRegistration {
 

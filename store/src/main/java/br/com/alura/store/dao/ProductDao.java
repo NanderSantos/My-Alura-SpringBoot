@@ -54,10 +54,8 @@ public class ProductDao {
 
     public List<Product> findAllByCategoryName(String name) {
 
-        String jpql = "SELECT p FROM Product p WHERE p.category.name = :name";
-
         return this.entityManager
-                .createQuery(jpql, Product.class)
+                .createNamedQuery("Product.productsByCategoryName", Product.class)
                 .setParameter("name", name)
                 .getResultList();
     }
