@@ -76,6 +76,24 @@ Main topics:
 
 ---
 
+## Second Course: "Java e JPA: Consultas avançadas, performance e modelos complexos" ✔ 
+
+Main topics:
+
+- Bidirectional Relationship Mapping
+- Using JPQL to Generate Reports Queries
+- Named Queries;
+- Aggregate Functions
+- Queries Perfomance
+- Eager and Lazy Loading
+- Join Fetch Strategy
+- Optional Parameters Queries
+- Criteria API
+- Entity Inheritance Mapping (SINGLE_TABLE and JOINED)
+- Composite Keys
+
+---
+
 # Java Basics
 
 ## First Course: "Java moderno: Tire proveito dos novos recursos do Java 8" ✔ 
