@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
+import com.nander.springdata.action.EmployeeAction;
 import com.nander.springdata.orm.Employee;
 import com.nander.springdata.orm.Position;
 import com.nander.springdata.orm.WorkUnit;
@@ -221,8 +222,13 @@ public class EmployeeCrudService {
 	public static Boolean list(Scanner scanner, EmployeeRepository employeeRepository, PositionRepository positionRepository, WorkUnitRepository workUnitRepository) {
 
 		Iterable<Employee> employees = employeeRepository.findAll();
-		employees.forEach(System.out::println);
-		System.out.println();
+
+		if(employees.iterator().hasNext()) {
+
+			employees.forEach(System.out::println);
+			System.out.println();
+		
+		} else System.out.println("Nenhum Funcionário cadastrado ainda!\n");
 
 		return true;
 	}

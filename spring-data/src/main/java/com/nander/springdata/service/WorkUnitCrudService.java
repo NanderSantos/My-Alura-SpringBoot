@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
+import com.nander.springdata.action.WorkUnitAction;
 import com.nander.springdata.orm.WorkUnit;
 import com.nander.springdata.repository.WorkUnitRepository;
 
@@ -119,8 +120,13 @@ public class WorkUnitCrudService {
 	public static Boolean list(Scanner scanner, WorkUnitRepository workUnitRepository) {
 
 		Iterable<WorkUnit> workUnits = workUnitRepository.findAll();
-		workUnits.forEach(System.out::println);
-		System.out.println();
+
+		if(workUnits.iterator().hasNext()) {
+
+			workUnits.forEach(System.out::println);
+			System.out.println();
+		
+		} else System.out.println("Nenhuma Unidade de Trabalho cadastrada ainda!\n");
 
 		return true;
 	}

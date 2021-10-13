@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
+import com.nander.springdata.action.PositionAction;
 import com.nander.springdata.orm.Position;
 import com.nander.springdata.repository.PositionRepository;
 
@@ -109,8 +110,13 @@ public class PositionCrudService {
 	public static Boolean list(Scanner scanner, PositionRepository positionRepository) {
 
 		Iterable<Position> positions = positionRepository.findAll();
-		positions.forEach(System.out::println);
-		System.out.println();
+
+		if(positions.iterator().hasNext()) {
+
+			positions.forEach(System.out::println);
+			System.out.println();
+		
+		} else System.out.println("Nenhum Cargo cadastrado ainda!\n");
 
 		return true;
 	}

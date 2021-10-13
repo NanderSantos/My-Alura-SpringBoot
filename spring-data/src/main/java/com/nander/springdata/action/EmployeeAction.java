@@ -1,4 +1,4 @@
-package com.nander.springdata.service;
+package com.nander.springdata.action;
 
 import java.util.Scanner;
 

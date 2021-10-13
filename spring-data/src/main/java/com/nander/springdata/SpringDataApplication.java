@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.nander.springdata.service.EmployeeCrudService;
 import com.nander.springdata.service.PositionCrudService;
+import com.nander.springdata.service.ReportService;
 import com.nander.springdata.service.WorkUnitCrudService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class SpringDataApplication implements CommandLineRunner {
 	@Autowired
 	private EmployeeCrudService employeeService;
 
+	@Autowired
+	private ReportService reportService;
+
 	public static void main(String[] args) {
 		SpringApplication.run(SpringDataApplication.class, args);
 	}
@@ -42,6 +46,7 @@ public class SpringDataApplication implements CommandLineRunner {
 			System.out.println("1 - Cargo");
 			System.out.println("2 - Unidade de Trabalho");
 			System.out.println("3 - Funcionário");
+			System.out.println("4 - Relatório");
 			System.out.print("\n> ");
 
 			int action = scanner.nextInt();
@@ -62,6 +67,11 @@ public class SpringDataApplication implements CommandLineRunner {
 				case 3:
 
 					employeeService.init(scanner);
+					break;
+
+				case 4:
+
+					reportService.init(scanner);
 					break;
 
 				default:
