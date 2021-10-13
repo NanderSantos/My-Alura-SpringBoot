@@ -16,6 +16,10 @@ import com.nander.springdata.repository.PositionRepository;
 import com.nander.springdata.repository.WorkUnitRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -221,12 +225,20 @@ public class EmployeeCrudService {
 
 	public static Boolean list(Scanner scanner, EmployeeRepository employeeRepository, PositionRepository positionRepository, WorkUnitRepository workUnitRepository) {
 
-		Iterable<Employee> employees = employeeRepository.findAll();
+		System.out.println("Número da página que deseja visualizar:");
+		System.out.print("\n> ");
+		int pageNumber = scanner.nextInt() - 1;
+		if(scanner.hasNextLine()) scanner.nextLine();
+		System.out.println();
 
-		if(employees.iterator().hasNext()) {
+		Pageable pageable = PageRequest.of(pageNumber, 4, Sort.by(Sort.Direction.DESC, "name"));
+		Page<Employee> page = employeeRepository.findAll(pageable);
 
-			employees.forEach(System.out::println);
+		if(page.iterator().hasNext()) {
+
+			page.forEach(System.out::println);
 			System.out.println();
+			System.out.println("Página " + (page.getNumber() + 1) + " de " + page.getTotalPages() + "\n");
 		
 		} else System.out.println("Nenhum Funcionário cadastrado ainda!\n");
 

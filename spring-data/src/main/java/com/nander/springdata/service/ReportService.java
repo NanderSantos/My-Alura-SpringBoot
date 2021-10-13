@@ -11,6 +11,10 @@ import com.nander.springdata.orm.Employee;
 import com.nander.springdata.repository.EmployeeRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -88,12 +92,22 @@ public class ReportService {
 		String name = scanner.nextLine();
 		System.out.println();
 
-		List<Employee> employees = employeeRepository.findByNameLike("%" + name + "%");
+		System.out.println("Número da página que deseja visualizar:");
+		System.out.print("\n> ");
+		int pageNumber = scanner.nextInt() - 1;
+		if(scanner.hasNextLine()) scanner.nextLine();
+		System.out.println();
+
+		Pageable pageable = PageRequest.of(pageNumber, 4, Sort.unsorted());
+		Page<Employee> page = employeeRepository.findAll(pageable);
+
+		List<Employee> employees = employeeRepository.findByNameLike("%" + name + "%", pageable);
 		
 		if(employees.size() > 0) {
 
 			employees.forEach(System.out::println);
 			System.out.println();
+			System.out.println("Página " + (page.getNumber() + 1) + " de " + page.getTotalPages() + "\n");
 		
 		} else System.out.println("Nenhum Funcionário encontrado!\n");
 

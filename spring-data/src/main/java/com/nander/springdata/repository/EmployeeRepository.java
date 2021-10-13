@@ -5,16 +5,17 @@ import java.util.List;
 
 import com.nander.springdata.orm.Employee;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EmployeeRepository extends CrudRepository<Employee, Integer> {
+public interface EmployeeRepository extends PagingAndSortingRepository<Employee, Integer> {
 	
 	public List<Employee> findByName(String name);
 
-	public List<Employee> findByNameLike(String string);
+	public List<Employee> findByNameLike(String string, Pageable pageable);
 
 	@Query("SELECT e FROM Employee e WHERE e.name = :name AND e.salary >= :salary AND e.hiringDate = :hiringDate")
 	public List<Employee> findByNameHiringDateSalaryGreather(String name, Double salary, LocalDate hiringDate);
