@@ -8,26 +8,32 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 @Entity
-@Table(name = "positions")
-public class Position {
+@Table(name = "work_units")
+public class WorkUnit {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@OneToMany(mappedBy = "position", fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "workUnits", fetch = FetchType.EAGER)
+	@Cascade(CascadeType.ALL)
 	private List<Employee> employees = new ArrayList<>();
 
 	private String description;
 
+	private String address;
+
 	@Override
 	public String toString() {
 
-		return "{ id: " + this.id + ", description: \"" + this.description + "\", employees: " + this.employees.size() + " }";
+		return "{ id: " + this.id + ", description: \"" + this.description + "\", address: \"" + this.address + "\", employees: " + this.employees.size() + " }";
 	}
 
 	public Integer getId() {
@@ -46,16 +52,23 @@ public class Position {
 		this.description = description;
 	}
 
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	public List<Employee> getEmployees() {
 		return employees;
 	}
-
+	
 	public void setEmployees(List<Employee> employees) {
 		this.employees = employees;
 	}
 
 	public void addEmployee(Employee employee) {
-
 		this.employees.add(employee);
 	}
 }
