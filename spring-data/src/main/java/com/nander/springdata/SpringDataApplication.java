@@ -2,6 +2,7 @@ package com.nander.springdata;
 
 import java.util.Scanner;
 
+import com.nander.springdata.service.DynamicReportService;
 import com.nander.springdata.service.EmployeeCrudService;
 import com.nander.springdata.service.PositionCrudService;
 import com.nander.springdata.service.ReportService;
@@ -29,6 +30,9 @@ public class SpringDataApplication implements CommandLineRunner {
 	@Autowired
 	private ReportService reportService;
 
+	@Autowired
+	private DynamicReportService dynamicReportService;
+
 	public static void main(String[] args) {
 		SpringApplication.run(SpringDataApplication.class, args);
 	}
@@ -47,6 +51,7 @@ public class SpringDataApplication implements CommandLineRunner {
 			System.out.println("2 - Unidade de Trabalho");
 			System.out.println("3 - Funcionário");
 			System.out.println("4 - Relatório");
+			System.out.println("5 - Relatório Dinâmico");
 			System.out.print("\n> ");
 
 			int action = scanner.nextInt();
@@ -72,6 +77,11 @@ public class SpringDataApplication implements CommandLineRunner {
 				case 4:
 
 					reportService.init(scanner);
+					break;
+
+				case 5:
+
+					dynamicReportService.init(scanner);
 					break;
 
 				default:

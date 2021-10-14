@@ -8,13 +8,15 @@ import com.nander.springdata.projections.EmployeeProjection;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EmployeeRepository extends PagingAndSortingRepository<Employee, Integer> {
-	
+public interface EmployeeRepository
+		extends PagingAndSortingRepository<Employee, Integer>, JpaSpecificationExecutor<Employee> {
+
 	public List<Employee> findByName(String name);
 
 	public Page<Employee> findByNameLike(String string, Pageable pageable);
