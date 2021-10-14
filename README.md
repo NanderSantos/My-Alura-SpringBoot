@@ -16,7 +16,7 @@ Alura's Spring Boot courses.
 
 ---
 
-# Spring Framework
+# REST API
 
 ## First Course: "Spring Boot API REST: Contrua uma API" ✔ 
 
@@ -91,6 +91,20 @@ Main topics:
 - Criteria API
 - Entity Inheritance Mapping (SINGLE_TABLE and JOINED)
 - Composite Keys
+
+---
+
+# Spring Data
+
+## First Course: "Spring Data JPA: Repositórios, Consultas, Projeções e Specifications" ✔ 
+
+Main topics:
+
+- CRUD operations
+- Derived Queries, JPQL and Native Queries
+- Projections
+- CRUD Repository, Paging and Sorting Repository
+- Specifications and Dynamic Search
 
 ---
 
