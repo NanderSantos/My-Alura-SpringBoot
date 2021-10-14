@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import com.nander.springdata.action.ReportAction;
 import com.nander.springdata.orm.Employee;
+import com.nander.springdata.projections.EmployeeProjection;
 import com.nander.springdata.repository.EmployeeRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,7 @@ public class ReportService {
 		actions.add(new ReportAction(2, "Buscar Funcionários por aproximação do Nome", ReportService::findByNameLike));
 		actions.add(new ReportAction(3, "Buscar Funcionários por Nome, Salário e Data de Contratação", ReportService::findByNameSalaryHiringDate));
 		actions.add(new ReportAction(4, "Buscar Funcionários contratados a partir de um certo dia", ReportService::findByHiringDateGrather));
+		actions.add(new ReportAction(5, "Buscar salários dos Funcionários", ReportService::getEmployeesSalary));
 
 		while (keepKunning) {
 
@@ -99,15 +101,13 @@ public class ReportService {
 		System.out.println();
 
 		Pageable pageable = PageRequest.of(pageNumber, 4, Sort.unsorted());
-		Page<Employee> page = employeeRepository.findAll(pageable);
-
-		List<Employee> employees = employeeRepository.findByNameLike("%" + name + "%", pageable);
+		Page<Employee> employees = employeeRepository.findByNameLike("%" + name + "%", pageable);
 		
-		if(employees.size() > 0) {
+		if(employees.getTotalElements() > 0) {
 
 			employees.forEach(System.out::println);
 			System.out.println();
-			System.out.println("Página " + (page.getNumber() + 1) + " de " + page.getTotalPages() + "\n");
+			System.out.println("Página " + (employees.getNumber() + 1) + " de " + employees.getTotalPages() + "\n");
 		
 		} else System.out.println("Nenhum Funcionário encontrado!\n");
 
@@ -163,6 +163,28 @@ public class ReportService {
 
 			employees.forEach(System.out::println);
 			System.out.println();
+		
+		} else System.out.println("Nenhum Funcionário encontrado!\n");
+
+		return true;
+	}
+
+	public static Boolean getEmployeesSalary(Scanner scanner, EmployeeRepository employeeRepository) {
+
+		System.out.println("Número da página que deseja visualizar:");
+		System.out.print("\n> ");
+		int pageNumber = scanner.nextInt() - 1;
+		if(scanner.hasNextLine()) scanner.nextLine();
+		System.out.println();
+
+		Pageable pageable = PageRequest.of(pageNumber, 4, Sort.unsorted());
+		Page<EmployeeProjection> employees = employeeRepository.getEmployeesSalary(pageable);
+		
+		if(employees.getTotalElements() > 0) {
+
+			employees.forEach(e -> System.out.println("{ id: " + e.getId() + ", name: \"" + e.getName() + "\", salay: R$ " + e.getSalary() + " }"));
+			System.out.println();
+			System.out.println("Página " + (employees.getNumber() + 1) + " de " + employees.getTotalPages() + "\n");
 		
 		} else System.out.println("Nenhum Funcionário encontrado!\n");
 

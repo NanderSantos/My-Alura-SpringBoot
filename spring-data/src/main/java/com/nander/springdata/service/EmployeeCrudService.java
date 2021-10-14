@@ -232,13 +232,13 @@ public class EmployeeCrudService {
 		System.out.println();
 
 		Pageable pageable = PageRequest.of(pageNumber, 4, Sort.by(Sort.Direction.DESC, "name"));
-		Page<Employee> page = employeeRepository.findAll(pageable);
+		Page<Employee> employees = employeeRepository.findAll(pageable);
 
-		if(page.iterator().hasNext()) {
+		if(employees.iterator().hasNext()) {
 
-			page.forEach(System.out::println);
+			employees.forEach(System.out::println);
 			System.out.println();
-			System.out.println("Página " + (page.getNumber() + 1) + " de " + page.getTotalPages() + "\n");
+			System.out.println("Página " + (employees.getNumber() + 1) + " de " + employees.getTotalPages() + "\n");
 		
 		} else System.out.println("Nenhum Funcionário cadastrado ainda!\n");
 
