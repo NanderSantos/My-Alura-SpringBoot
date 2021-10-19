@@ -13,11 +13,11 @@ public class InsertTest {
 		Connection connection = connectionFactory.createConnection();
 
 		String query = "INSERT INTO PRODUCT (name, description) VALUES ('Mouse', 'Mouse sem fio')";
+		System.out.println(query);
+
 		Statement statement = connection.createStatement();
 		statement.execute(query, Statement.RETURN_GENERATED_KEYS);
 		ResultSet resultSet = statement.getGeneratedKeys();
-
-		System.out.println(query);
 
 		while(resultSet.next()) {
 
