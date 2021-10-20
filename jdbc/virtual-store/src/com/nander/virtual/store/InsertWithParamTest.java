@@ -32,7 +32,7 @@ public class InsertWithParamTest {
 				
 				connection.commit(); // Comita as alterações
 				
-			} catch (RuntimeException e) {
+			} catch (Exception e) {
 				
 				System.out.println();
 				e.printStackTrace();
