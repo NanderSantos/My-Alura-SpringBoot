@@ -11,7 +11,7 @@ public class DeleteTest {
 		ConnectionFactory connectionFactory = new ConnectionFactory();
 		Connection connection = connectionFactory.createConnection();
 
-		Integer rowsToDelete = 2;
+		Integer rowsToDelete = 13;
 
 		String query = "DELETE FROM PRODUCT WHERE id > ?";
 		System.out.println(query);
