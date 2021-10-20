@@ -9,7 +9,7 @@ public class DeleteTest {
 	public static void main(String[] args) throws SQLException {
 		
 		ConnectionFactory connectionFactory = new ConnectionFactory();
-		Connection connection = connectionFactory.createConnection();
+		Connection connection = connectionFactory.getConnection();
 
 		Integer rowsToDelete = 13;
 
@@ -24,7 +24,7 @@ public class DeleteTest {
 
 		System.out.println("Linhas deletadas: " + updatedRows);
 
-		System.out.println("\nFechando conexão com o banco: " + ConnectionFactory.getDatabaseName() + "\n");
+		System.out.println("\nFechando conexão com o banco: " + connectionFactory.getDatabaseName() + "\n");
 		connection.close();
 	}
 }

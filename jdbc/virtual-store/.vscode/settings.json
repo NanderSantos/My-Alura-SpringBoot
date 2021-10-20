@@ -1,0 +1,7 @@
+{
+	"java.project.referencedLibraries": [
+		"lib/**/*.jar",
+		"/home/nander/Github/public/My-Alura-SpringBoot/jdbc/c3p0-0.9.5.4.jar",
+		"/home/nander/Github/public/My-Alura-SpringBoot/jdbc/mchange-commons-java-0.2.16.jar"
+	]
+}

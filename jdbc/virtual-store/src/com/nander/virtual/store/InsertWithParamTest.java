@@ -18,7 +18,7 @@ public class InsertWithParamTest {
 		vez que estes herdam da classe java.lang.AutoCloseable
 		*/
 		
-		try(Connection connection = connectionFactory.createConnection()){
+		try(Connection connection = connectionFactory.getConnection()){
 
 			connection.setAutoCommit(false);
 			

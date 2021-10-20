@@ -1,27 +1,43 @@
 package com.nander.virtual.store;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import javax.sql.DataSource;
+
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 public class ConnectionFactory {
 	
-	private final static String databaseName = "virtual_store";
-	private final static String user = "root";
-	private final static String password = "root";
-	private final static String url = "jdbc:mysql://localhost:3306/" + ConnectionFactory.databaseName + "?useTimezone=true&serverTimezone=UTC";
-	
-	public Connection createConnection() throws SQLException {
+	private final String databaseName = "virtual_store";
+	private final String user = "root";
+	private final String password = "root";
+	private final String url = "jdbc:mysql://localhost:3306/" + this.databaseName + "?useTimezone=true&serverTimezone=UTC";
 
-		System.out.println("\nAbrindo conexão com o banco: " + ConnectionFactory.databaseName);
-		Connection connection = DriverManager.getConnection(url, user, password);
-		System.out.println("Conexão aberta!\n");
+	private DataSource dataSource;
+	
+	public ConnectionFactory() {
+
+		ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();
+		comboPooledDataSource.setJdbcUrl(this.url);
+		comboPooledDataSource.setUser(this.user);
+		comboPooledDataSource.setPassword(this.password);
+		comboPooledDataSource.setMaxPoolSize(10);
+
+		this.dataSource = comboPooledDataSource;
+	}
+	
+	public Connection getConnection() throws SQLException {
+
+		System.out.println("\nAbrindo conexão com o banco: " + this.databaseName + "\n");
+		Connection connection = this.dataSource.getConnection();
+		System.out.println("\nConexão aberta!\n");
 
 		return connection;
 	}
 
-	public static String getDatabaseName() {
+	public String getDatabaseName() {
 
-		return ConnectionFactory.databaseName;
+		return this.databaseName;
 	}
 }
