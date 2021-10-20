@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import com.nander.virtual.store.factory.ConnectionFactory;
+
 public class DeleteTest {
 
 	public static void main(String[] args) throws SQLException {
@@ -11,7 +13,7 @@ public class DeleteTest {
 		ConnectionFactory connectionFactory = new ConnectionFactory();
 		Connection connection = connectionFactory.getConnection();
 
-		Integer rowsToDelete = 13;
+		Integer rowsToDelete = 28;
 
 		String query = "DELETE FROM PRODUCT WHERE id > ?";
 		System.out.println(query);

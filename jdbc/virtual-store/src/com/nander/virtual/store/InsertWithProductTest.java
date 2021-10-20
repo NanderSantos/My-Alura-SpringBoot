@@ -5,7 +5,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.nander.virtual.store.dao.ProductDAO;
-import com.nander.virtual.store.persistence.ProductPersistence;
+import com.nander.virtual.store.factory.ConnectionFactory;
+import com.nander.virtual.store.repository.ProductRepository;
 
 public class InsertWithProductTest {
 	
@@ -15,10 +16,10 @@ public class InsertWithProductTest {
 
 		try (Connection connection = new ConnectionFactory().getConnection()) {
 			
-			ProductPersistence productPersistence = new ProductPersistence(connection);
-			productPersistence.save(product);
+			ProductRepository productRepository = new ProductRepository(connection);
+			productRepository.save(product);
 			System.out.println();
-			List<ProductDAO> listProducts = productPersistence.list();
+			List<ProductDAO> productList = productRepository.list();
 		}
 	}
 }

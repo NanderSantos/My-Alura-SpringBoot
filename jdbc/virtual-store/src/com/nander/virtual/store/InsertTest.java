@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.nander.virtual.store.factory.ConnectionFactory;
+
 public class InsertTest {
 
 	public static void main(String[] args) throws SQLException {

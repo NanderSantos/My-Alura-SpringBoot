@@ -1,4 +1,4 @@
-package com.nander.virtual.store.persistence;
+package com.nander.virtual.store.repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,13 +8,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.nander.virtual.store.dao.CategoryDAO;
 import com.nander.virtual.store.dao.ProductDAO;
 
-public class ProductPersistence {
+public class ProductRepository {
 
 	private Connection connection;
 
-	public ProductPersistence(Connection connection) {
+	public ProductRepository(Connection connection) {
 
 		this.connection = connection;
 	}
@@ -45,7 +46,7 @@ public class ProductPersistence {
 
 	public List<ProductDAO> list() throws SQLException {
 		
-		List<ProductDAO> listProducts = new ArrayList<>();
+		List<ProductDAO> productList = new ArrayList<>();
 		
 		String query = "SELECT id, name, description FROM PRODUCT";
 		System.out.println(query);
@@ -63,12 +64,41 @@ public class ProductPersistence {
 			
 				ProductDAO product = new ProductDAO(id, name, description);
 
-				listProducts.add(product);
+				productList.add(product);
 			}
 
-			listProducts.forEach(System.out::println);
+			productList.forEach(System.out::println);
 		}
 		
-		return listProducts;
+		return productList;
+	}
+
+	public List<ProductDAO> findByCategory(CategoryDAO category) throws SQLException {
+		
+		List<ProductDAO> productList = new ArrayList<>();
+		
+		String query = "SELECT id, name, description FROM PRODUCT WHERE CATEGORY_ID = ?";
+		System.out.println(query);
+
+		try(PreparedStatement statement = connection.prepareStatement(query)) {
+
+			statement.setInt(1, category.getId());
+			statement.execute();
+
+			ResultSet resultSet = statement.getResultSet();
+			
+			while(resultSet.next()) {
+				
+				Integer id = resultSet.getInt("id");
+				String description = resultSet.getString("description");
+				String name = resultSet.getString("name");
+			
+				ProductDAO product = new ProductDAO(id, name, description);
+
+				productList.add(product);
+			}
+		}
+		
+		return productList;
 	}
 }

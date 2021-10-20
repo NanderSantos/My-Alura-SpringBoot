@@ -1,4 +1,4 @@
-package com.nander.virtual.store;
+package com.nander.virtual.store.factory;
 
 import java.sql.Connection;
 import java.sql.SQLException;
