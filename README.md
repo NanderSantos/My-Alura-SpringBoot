@@ -108,6 +108,23 @@ Main topics:
 
 ---
 
+# JDBC
+
+## First Course: "Java e JDBC: Trabalhando com um banco de dados" ✔ 
+
+Main topics:
+
+- JDBC
+- Drivers
+- Statement, Prepared Statement e Result sets
+- SQL Injection
+- Transaction Control
+- Inner Join
+- Connection Pool e Datasources
+- DAO
+
+---
+
 # Java Basics
 
 ## First Course: "Java moderno: Tire proveito dos novos recursos do Java 8" ✔ 

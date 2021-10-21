@@ -1,0 +1,10 @@
+{
+	"java.project.referencedLibraries": {
+		"include": [
+			"lib/**/*.jar"
+		],
+		"exclude": [
+			"/loja-virtual-view-repository/E:/Aulas/JDBC/c3p0-0.9.5.4.jar"
+		]
+	}
+}
