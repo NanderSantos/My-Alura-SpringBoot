@@ -9,7 +9,14 @@
 <title>Lista de Emp</title>
 </head>
 <body>
-	Lista de Empresas <br />
+	<c:if test="${ not empty company }">
+		<fmt:formatDate value="${ date }" pattern="dd/MM/yyyy" var="formattedDate"/>
+		Empresa ${ company }, criada dia ${ formattedDate }, cadastrada com sucesso!
+		<br />
+		<br />
+	</c:if>
+		Lista de Empresas
+	<br />
 	<ul>
 		<c:forEach items="${ companies }" var="company">
 			<fmt:formatDate value="${ company.creationDate }" pattern="dd/MM/yyyy" var="date"/>
