@@ -1,14 +1,17 @@
 package br.com.alura.gerenciador.model;
 
+import java.util.Date;
+
 public class Company {
 
 	private int id;
 	private String name;
-	
+	private Date creationDate = new Date();
+
 	@Override
 	public String toString() {
-		
-		return this.id + " - Nome: " + this.name;  
+
+		return this.id + " - Nome: " + this.name;
 	}
 
 	public int getId() {
@@ -27,4 +30,11 @@ public class Company {
 		this.name = name;
 	}
 
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
 }
