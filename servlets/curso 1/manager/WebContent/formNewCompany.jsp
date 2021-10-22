@@ -9,7 +9,6 @@
 	<title>Nova Empresa</title>
 </head>
 <body>
-
 	<form action="${ linkServletNewCompany }" method="post" >
 		Nome: <input type="text" name="name" />
 		Data de Abertura: <input type="date" name="date" />

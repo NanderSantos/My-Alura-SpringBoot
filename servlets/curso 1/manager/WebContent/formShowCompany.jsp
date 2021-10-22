@@ -6,17 +6,18 @@
  
 <!DOCTYPE html> 
 <html>
-<head>
-	<meta charset="UTF-8">
-	<title>Nova Empresa</title>
-</head>
-<body>
-
-	<form action="${ linkServletUpdateCompany }" method="post" >
-		<fmt:formatDate value="${ company.creationDate }" pattern="dd/MM/yyyy" var="date"/>
-			Nome: <input type="text" name="name" value="${ company.name }" />
-			Data de Abertura: <input type="date" name="date" value="${ date }" />
-			<input type="hidden" name="id" value="${ company.id }" />
-		<input type="submit" />
-	</form>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title>${ company.name }</title>
+	</head>
+	<body>
+	
+		<form action="${ linkServletUpdateCompany }" method="post" >
+			<fmt:formatDate value="${ company.creationDate }" pattern="dd/MM/yyyy" var="date"/>
+				Nome: <input type="text" name="name" value="${ company.name }" />
+				Data de Abertura: <input type="date" name="date" value="${ date }" />
+				<input type="hidden" name="id" value="${ company.id }" />
+			<input type="submit" />
+		</form>
+	</body>
+</html>

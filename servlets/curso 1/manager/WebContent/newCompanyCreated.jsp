@@ -4,10 +4,10 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Nova Empresa</title>
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<title>Nova Empresa</title>
+	</head>
 	<body>
 		<c:if test="${ not empty company }">
 			<fmt:formatDate value="${ date }" pattern="dd/MM/yyyy" var="formattedDate"/>
