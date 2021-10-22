@@ -16,9 +16,9 @@ Alura's Spring Boot courses.
 
 ---
 
-# REST API
+## **REST API**
 
-## First Course: "Spring Boot API REST: Contrua uma API" ✔ 
+### First Course: "Spring Boot API REST: Contrua uma API" ✔
 
 Main topics:
 
@@ -28,7 +28,7 @@ Main topics:
 
 ---
 
-## Second Course: "Spring Boot API REST: Segurança da API, Cache e Monitoramento" ✔ 
+### Second Course: "Spring Boot API REST: Segurança da API, Cache e Monitoramento" ✔
 
 Main topics:
 
@@ -42,7 +42,7 @@ Main topics:
 
 ---
 
-## Third Course: "Spring Boot e Teste: Profiles, Testes e Deploy" ✔ 
+### Third Course: "Spring Boot e Teste: Profiles, Testes e Deploy" ✔
 
 Main topics:
 
@@ -55,15 +55,15 @@ Main topics:
 
 ---
 
-## Previous Spring Courses
+### Previous Spring Courses
 
-Previous spring project: https://github.com/NanderSantos/My-SpringAPI
+Previous spring project: [My-SpringAPI](https://github.com/NanderSantos/My-SpringAPI)
 
 ---
 
-# JPA
+## **JPA**
 
-## First Course: "Persistência com JPA: Introdução ao Hibernate" ✔ 
+### First Course: "Persistência com JPA: Introdução ao Hibernate" ✔
 
 Main topics:
 
@@ -76,7 +76,7 @@ Main topics:
 
 ---
 
-## Second Course: "Java e JPA: Consultas avançadas, performance e modelos complexos" ✔ 
+### Second Course: "Java e JPA: Consultas avançadas, performance e modelos complexos" ✔
 
 Main topics:
 
@@ -94,9 +94,9 @@ Main topics:
 
 ---
 
-# Spring Data
+## **Spring Data**
 
-## First Course: "Spring Data JPA: Repositórios, Consultas, Projeções e Specifications" ✔ 
+### First Course: "Spring Data JPA: Repositórios, Consultas, Projeções e Specifications" ✔
 
 Main topics:
 
@@ -108,9 +108,9 @@ Main topics:
 
 ---
 
-# JDBC
+## **JDBC**
 
-## First Course: "Java e JDBC: Trabalhando com um banco de dados" ✔ 
+### First Course: "Java e JDBC: Trabalhando com um banco de dados" ✔
 
 Main topics:
 
@@ -125,9 +125,26 @@ Main topics:
 
 ---
 
-# Java Basics
+## **Servlets**
 
-## First Course: "Java moderno: Tire proveito dos novos recursos do Java 8" ✔ 
+### First Course: "Java Servlet: Fundamentos da programação web Java" ✔
+
+Main topics:
+
+- Servlets
+- Tomcat
+- HTTP Methods
+- JSP
+- Scriptlet
+- JSTL and Expression Language
+- CRUD
+- Deploy
+
+---
+
+## **Java Basics**
+
+### First Course: "Java moderno: Tire proveito dos novos recursos do Java 8" ✔
 
 Main topics:
 
