@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.alura.gerenciador.model.Company;
 import br.com.alura.gerenciador.service.DatabaseService;
 
-public class ListCompaniesAction {
+public class ListCompanies implements IAction {
 	
-	public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		System.out.println("Listando empresas");
 
@@ -21,8 +21,7 @@ public class ListCompaniesAction {
 		List<Company> companiesList = database.getCompanies();
 
 		request.setAttribute("companies", companiesList);
-
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/listCompanies.jsp");
-		requestDispatcher.forward(request, response);
+		
+		return "forward:listCompanies.jsp";
 	}
 }

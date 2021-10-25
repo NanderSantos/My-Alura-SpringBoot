@@ -1,17 +1,21 @@
 package br.com.alura.gerenciador.servlet;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.alura.gerenciador.action.DeleteCompanyAction;
-import br.com.alura.gerenciador.action.ListCompaniesAction;
-import br.com.alura.gerenciador.action.NewCompanyAction;
-import br.com.alura.gerenciador.action.ShowCompanyAction;
-import br.com.alura.gerenciador.action.UpdateCompanyAction;
+import br.com.alura.gerenciador.action.DeleteCompany;
+import br.com.alura.gerenciador.action.IAction;
+import br.com.alura.gerenciador.action.ListCompanies;
+import br.com.alura.gerenciador.action.NewCompany;
+import br.com.alura.gerenciador.action.NewCompanyForm;
+import br.com.alura.gerenciador.action.ShowCompany;
+import br.com.alura.gerenciador.action.UpdateCompany;
 
 @WebServlet("/entry")
 public class EntryServlet extends HttpServlet {
@@ -22,42 +26,30 @@ public class EntryServlet extends HttpServlet {
 
 		System.out.println("Servlet de entrada");
 		
-		String actionParam = request.getParameter("action");
+		String actionName = request.getParameter("action");
 		
-		switch (actionParam) {
-		
-			case "NewCompany":
+		try {
+			
+			Class myClass = Class.forName("br.com.alura.gerenciador.action." + actionName);
+			IAction action = (IAction) myClass.newInstance();
+			
+			String actionReturn = action.exec(request, response);
+			
+			String[] nextPage = actionReturn.split(":");
+			
+			if(nextPage[0].equals("redirect")) {
 				
-				NewCompanyAction newCompanyAction = new NewCompanyAction();
-				newCompanyAction.exec(request, response);
-				break;
-		
-			case "ListCompanies":
-				
-				ListCompaniesAction listCompaniesAction = new ListCompaniesAction();
-				listCompaniesAction.exec(request, response);
-				break;
-		
-			case "DeleteCompany":
-				
-				DeleteCompanyAction deleteCompanyAction = new DeleteCompanyAction();
-				deleteCompanyAction.exec(request, response);
-				break;
-		
-			case "ShowCompany":
-				
-				ShowCompanyAction showCompanyAction = new ShowCompanyAction();
-				showCompanyAction.exec(request, response);
-				break;
-		
-			case "UpdateCompany":
-				
-				UpdateCompanyAction updateCompanyAction = new UpdateCompanyAction();
-				updateCompanyAction.exec(request, response);
-				break;
-	
-			default:
-				break;
+				response.sendRedirect(nextPage[1]);
+			
+			} else if(nextPage[0].equals("forward")) {
+							
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/view/" + nextPage[1]);
+				requestDispatcher.forward(request, response);
+			}
+			
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+			
+			throw new ServletException(e);
 		}
 	}
 }

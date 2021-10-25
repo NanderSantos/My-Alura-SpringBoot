@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.alura.gerenciador.model.Company;
 import br.com.alura.gerenciador.service.DatabaseService;
 
-public class ShowCompanyAction {
+public class ShowCompany implements IAction {
 	
-	public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		System.out.println("Mostrando dados da empresa");
 
@@ -28,8 +28,9 @@ public class ShowCompanyAction {
 			
 			request.setAttribute("company", company);
 			
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/formShowCompany.jsp");
-			requestDispatcher.forward(request, response);
+			return "forward:formShowCompany.jsp";
 		}
+		
+		return "";
 	}
 }

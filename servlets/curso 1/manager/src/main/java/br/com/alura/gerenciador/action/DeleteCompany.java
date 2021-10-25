@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.com.alura.gerenciador.service.DatabaseService;
 
-public class DeleteCompanyAction {
+public class DeleteCompany implements IAction {
 	
-	public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		System.out.println("Removendo empresa");
 
@@ -20,6 +20,6 @@ public class DeleteCompanyAction {
 		DatabaseService database = new DatabaseService();
 		database.deleteCompany(id);
 		
-		response.sendRedirect("entry?action=ListCompanies");
+		return "redirect:entry?action=ListCompanies";
 	}
 }

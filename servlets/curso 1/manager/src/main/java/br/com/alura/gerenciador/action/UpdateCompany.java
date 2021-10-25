@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.alura.gerenciador.model.Company;
 import br.com.alura.gerenciador.service.DatabaseService;
 
-public class UpdateCompanyAction {
+public class UpdateCompany implements IAction {
 	
-	public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		System.out.println("Atualizando empresa");
 
@@ -49,6 +49,6 @@ public class UpdateCompanyAction {
 		// req.getRequestDispatcher("/listCompanies");
 		// requestDispatcher.forward(req, resp);
 
-		response.sendRedirect("entry?action=ListCompanies");
+		return "redirect:entry?action=ListCompanies";
 	}
 }
