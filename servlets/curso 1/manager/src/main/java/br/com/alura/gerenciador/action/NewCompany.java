@@ -44,6 +44,6 @@ public class NewCompany implements IAction {
 		// req.getRequestDispatcher("/listCompanies");
 		// requestDispatcher.forward(req, resp);
 
-		return "redirect:entry?action=ListCompanies";
+		return "redirect:ListCompanies";
 	}
 }

@@ -20,6 +20,6 @@ public class DeleteCompany implements IAction {
 		DatabaseService database = new DatabaseService();
 		database.deleteCompany(id);
 		
-		return "redirect:entry?action=ListCompanies";
+		return "redirect:ListCompanies";
 	}
 }

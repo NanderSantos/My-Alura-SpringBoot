@@ -39,7 +39,7 @@ public class EntryServlet extends HttpServlet {
 			
 			if(nextPage[0].equals("redirect")) {
 				
-				response.sendRedirect(nextPage[1]);
+				response.sendRedirect("entry?action=" + nextPage[1]);
 			
 			} else if(nextPage[0].equals("forward")) {
 							
