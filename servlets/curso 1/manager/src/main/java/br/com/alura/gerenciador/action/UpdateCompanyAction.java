@@ -1,4 +1,4 @@
-package br.com.alura.gerenciador.servlet;
+package br.com.alura.gerenciador.action;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -6,20 +6,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.alura.gerenciador.model.Company;
-import br.com.alura.gerenciador.service.Database;
+import br.com.alura.gerenciador.service.DatabaseService;
 
-@WebServlet("/updateCompany")
-public class UpdateCompanyServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+public class UpdateCompanyAction {
+	
+	public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		System.out.println("Atualizando empresa");
 
@@ -28,7 +23,7 @@ public class UpdateCompanyServlet extends HttpServlet {
 		String idString = request.getParameter("id");
 		Integer id = Integer.valueOf(idString);
 		
-		Database database = new Database();
+		DatabaseService database = new DatabaseService();
 		Company company = database.findById(id);
 
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -54,6 +49,6 @@ public class UpdateCompanyServlet extends HttpServlet {
 		// req.getRequestDispatcher("/listCompanies");
 		// requestDispatcher.forward(req, resp);
 
-		response.sendRedirect("listCompanies");
+		response.sendRedirect("entry?action=ListCompanies");
 	}
 }

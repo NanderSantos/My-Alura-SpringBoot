@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import br.com.alura.gerenciador.model.Company;
 
-public class Database {
+public class DatabaseService {
 	
 	private static List<Company> companies = new ArrayList<>();
 	private static Integer sequentialKey = 1;
@@ -15,11 +15,11 @@ public class Database {
 		
 		Company company1 = new Company();
 		company1.setName("Alura");
-		company1.setId(Database.sequentialKey++);
+		company1.setId(DatabaseService.sequentialKey++);
 		
 		Company company2 = new Company();
 		company2.setName("Caelum");
-		company2.setId(Database.sequentialKey++);
+		company2.setId(DatabaseService.sequentialKey++);
 		
 		companies.add(company1)	;
 		companies.add(company2);
@@ -27,22 +27,22 @@ public class Database {
 
 	public void addCompany(Company company) {
 		
-		company.setId(Database.sequentialKey++);
+		company.setId(DatabaseService.sequentialKey++);
 		companies.add(company);
 	}
 
 	public static List<Company> getCompanies() {
-		return Database.companies;
+		return DatabaseService.companies;
 	}
 
 	public void deleteCompany(Integer id) {
 		
-		Database.companies.removeIf(company -> company.getId() == id);		
+		DatabaseService.companies.removeIf(company -> company.getId() == id);		
 	}
 
 	public Company findById(Integer id) {
 		
-		Optional<Company> optional = Database.companies
+		Optional<Company> optional = DatabaseService.companies
 				.stream()
 				.filter(company -> company.getId() == id)
 				.findFirst();

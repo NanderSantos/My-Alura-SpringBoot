@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
  
-<c:url value="/updateCompany" var="linkServletUpdateCompany" />
+<c:url value="/entry?action=UpdateCompany" var="linkServletUpdateCompany" />
  
 <!DOCTYPE html> 
 <html>

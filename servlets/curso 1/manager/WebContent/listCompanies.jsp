@@ -2,8 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<c:url value="/deleteCompany" var="linkServletDeleteCompany" />
-<c:url value="/showCompany" var="linkServletShowCompany" />
+<c:url value="/entry?action=DeleteCompany" var="linkServletDeleteCompany" />
+<c:url value="/entry?action=ShowCompany" var="linkServletShowCompany" />
 
 <!DOCTYPE html>
 <html>
@@ -25,8 +25,8 @@
 				<fmt:formatDate value="${ company.creationDate }" pattern="dd/MM/yyyy" var="date"/>
 				<li>
 					${ company.name }, criada em ${ date }
-					<a href="${ linkServletShowCompany }?id=${ company.id }">Editar</a>
-					<a href="${ linkServletDeleteCompany }?id=${ company.id }">Remover</a>
+					<a href="${ linkServletShowCompany }&id=${ company.id }">Editar</a>
+					<a href="${ linkServletDeleteCompany }&id=${ company.id }">Remover</a>
 				</li>
 			</c:forEach>
 		</ul>
