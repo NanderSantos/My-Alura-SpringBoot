@@ -9,6 +9,7 @@
 		<title>Nova Empresa</title>
 	</head>
 	<body>
+		<c:import url="logout-fragment.jsp" />
 		<c:if test="${ not empty company }">
 			<fmt:formatDate value="${ date }" pattern="dd/MM/yyyy" var="formattedDate"/>
 			Empresa ${ company }, criada dia ${ formattedDate }, cadastrada com sucesso!

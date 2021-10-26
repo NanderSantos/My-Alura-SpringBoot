@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.alura.gerenciador.action.DeleteCompany;
 import br.com.alura.gerenciador.action.IAction;
@@ -27,6 +28,16 @@ public class EntryServlet extends HttpServlet {
 		System.out.println("Servlet de entrada");
 		
 		String actionName = request.getParameter("action");
+		
+		HttpSession session = request.getSession();
+		boolean isUserLoggedIn = !(session.getAttribute("loggedUser") == null);
+		boolean isAProtectedAction = !(actionName.equals("Login") || actionName.equals("LoginForm"));
+		
+		if(isAProtectedAction && !isUserLoggedIn) {
+			
+			response.sendRedirect("entry?action=LoginForm");
+			return ;
+		}
 		
 		try {
 			

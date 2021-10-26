@@ -9,6 +9,7 @@
 	<title>Nova Empresa</title>
 </head>
 <body>
+	<c:import url="logout-fragment.jsp" />
 	<form action="${ linkNewCompany }" method="post" >
 		Nome: <input type="text" name="name" />
 		Data de Abertura: <input type="date" name="date" />

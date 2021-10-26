@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.alura.gerenciador.model.User;
 import br.com.alura.gerenciador.service.DatabaseService;
@@ -27,6 +28,10 @@ public class Login implements IAction {
 		if(user != null) {
 			
 			System.out.println("Usuário existe");
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("loggedUser", user);
+			
 			return "redirect:ListCompanies";
 		
 		} else {

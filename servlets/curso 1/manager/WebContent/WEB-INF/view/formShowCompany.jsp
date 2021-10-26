@@ -11,7 +11,7 @@
 		<title>${ company.name }</title>
 	</head>
 	<body>
-	
+		<c:import url="logout-fragment.jsp" />
 		<form action="${ linkUpdateCompany }" method="post" >
 			<fmt:formatDate value="${ company.creationDate }" pattern="dd/MM/yyyy" var="date"/>
 				Nome: <input type="text" name="name" value="${ company.name }" />

@@ -13,6 +13,10 @@
 		<title>Lista de Empresas</title>
 	</head>
 	<body>
+		<c:import url="logout-fragment.jsp" />
+		Bem vindo, ${ loggedUser.login }!
+		<br />
+		<br />
 		<c:if test="${ not empty company }">
 			<fmt:formatDate value="${ date }" pattern="dd/MM/yyyy" var="formattedDate"/>
 			Empresa ${ company }, criada dia ${ formattedDate }, cadastrada com sucesso!
