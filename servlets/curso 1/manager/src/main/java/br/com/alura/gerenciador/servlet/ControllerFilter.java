@@ -17,6 +17,12 @@ import br.com.alura.gerenciador.action.IAction;
 
 @WebFilter("/entry")
 public class ControllerFilter implements Filter {
+	
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {}
+	
+	@Override
+	public void destroy() {}
 
 	public void doFilter(ServletRequest serverRequest, ServletResponse serverResponse, FilterChain chain)
 			throws IOException, ServletException {

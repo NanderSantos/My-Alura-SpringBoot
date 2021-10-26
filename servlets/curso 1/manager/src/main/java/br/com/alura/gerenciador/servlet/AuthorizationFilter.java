@@ -15,6 +15,12 @@ import javax.servlet.http.HttpSession;
 @WebFilter("/entry")
 public class AuthorizationFilter implements Filter {
 	
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {}
+	
+	@Override
+	public void destroy() {}
+	
 	public void doFilter(ServletRequest serverRequest, ServletResponse serverResponse, FilterChain chain) throws IOException, ServletException {
 		
 		System.out.println("AuthorizationFilter");
