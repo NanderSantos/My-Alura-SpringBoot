@@ -15,7 +15,7 @@ import br.com.alura.gerenciador.service.DatabaseService;
 public class ListCompanies implements IAction {
 	
 	public String exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 		System.out.println("Listando empresas");
 
 		DatabaseService database = new DatabaseService();

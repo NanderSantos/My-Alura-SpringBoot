@@ -18,8 +18,8 @@ import br.com.alura.gerenciador.action.NewCompanyForm;
 import br.com.alura.gerenciador.action.ShowCompany;
 import br.com.alura.gerenciador.action.UpdateCompany;
 
-@WebServlet("/entry")
-public class EntryServlet extends HttpServlet {
+//@WebServlet(urlPatterns = "/entry")
+public class ControllerServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -28,16 +28,6 @@ public class EntryServlet extends HttpServlet {
 		System.out.println("Servlet de entrada");
 		
 		String actionName = request.getParameter("action");
-		
-		HttpSession session = request.getSession();
-		boolean isUserLoggedIn = !(session.getAttribute("loggedUser") == null);
-		boolean isAProtectedAction = !(actionName.equals("Login") || actionName.equals("LoginForm"));
-		
-		if(isAProtectedAction && !isUserLoggedIn) {
-			
-			response.sendRedirect("entry?action=LoginForm");
-			return ;
-		}
 		
 		try {
 			
