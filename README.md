@@ -163,6 +163,13 @@ Main topics:
 
 Main topics:
 
+- Install and Usage
+- Dependency Management
+- Build Goals
+- Proxy
+- Plugins
+- Modules
+
 ---
 
 ## **Java Basics**
