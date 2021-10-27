@@ -1,7 +1,8 @@
 package br.com.alura;
 
-import static org.junit.Assert.assertEquals;
+import java.math.BigDecimal;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 public class ProductTest {
@@ -9,6 +10,9 @@ public class ProductTest {
 	@Test
 	public void teste() {
 
-		assertEquals("", "");
+		Product product = new Product("teste", BigDecimal.TEN);
+
+		Assert.assertEquals("teste", product.getName());
+		Assert.assertEquals(BigDecimal.TEN, product.getPrice());
 	}
 }
