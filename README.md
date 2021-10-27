@@ -157,6 +157,14 @@ Main topics:
 
 ---
 
+## **Maven**
+
+### First Course: "Maven: Gerenciamento de dependências e build de aplicações Java" ✔
+
+Main topics:
+
+---
+
 ## **Java Basics**
 
 ### First Course: "Java moderno: Tire proveito dos novos recursos do Java 8" ✔
