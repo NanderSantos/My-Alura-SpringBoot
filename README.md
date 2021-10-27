@@ -142,6 +142,21 @@ Main topics:
 
 ---
 
+### Second Course: "Java Servlet: Autenticação, autorização e o padrão MVC" ✔
+
+Main topics:
+
+- MVC
+- Design Pattern Command
+- Reflection API
+- Authentication
+- HttpSession
+- Filters x Interceptors
+- WebService
+- Jetty
+
+---
+
 ## **Java Basics**
 
 ### First Course: "Java moderno: Tire proveito dos novos recursos do Java 8" ✔
