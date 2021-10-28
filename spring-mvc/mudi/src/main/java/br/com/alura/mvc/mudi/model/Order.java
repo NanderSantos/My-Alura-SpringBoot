@@ -25,6 +25,15 @@ public class Order implements Serializable {
 	private String imageUrl;
 	private String orderDescription;
 
+	public Order() {}
+
+	public Order(String name, String orderUrl, String imageUrl, String orderDescription) {
+		this.name = name;
+		this.orderUrl = orderUrl;
+		this.imageUrl = imageUrl;
+		this.orderDescription = orderDescription;
+	}
+
 	public Long getId() {
 		return id;
 	}
