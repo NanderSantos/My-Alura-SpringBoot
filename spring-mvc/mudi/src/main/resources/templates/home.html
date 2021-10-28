@@ -15,7 +15,7 @@
 							<div class="row">
 								<div class="col-md-5">
 									Valor: 
-									<span th:text="${ order.value }">200,99</span>
+									<span th:text="${ order.orderValue }">200,99</span>
 								</div>
 								<div class="col-md-7">
 									Data da entrega: 
@@ -28,7 +28,7 @@
 							</div>
 							<div>Descrição</div>
 							<div>
-								<textarea class="form-control" th:text="${ order.description }">descrição do pedido</textarea>
+								<textarea class="form-control" th:text="${ order.orderDescription }">descrição do pedido</textarea>
 							</div>
 						</div>
 						<div class="col-12 col-sm-4">

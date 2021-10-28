@@ -1,16 +1,37 @@
 package br.com.alura.mvc.mudi.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class Order {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "orders")
+public class Order implements Serializable {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 	private String name;
-	private BigDecimal value;
+	private BigDecimal orderValue;
 	private LocalDate deliveryDate;
 	private String orderUrl;
 	private String imageUrl;
-	private String description;
+	private String orderDescription;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -20,12 +41,12 @@ public class Order {
 		this.name = name;
 	}
 
-	public BigDecimal getValue() {
-		return value;
+	public BigDecimal getOrderValue() {
+		return orderValue;
 	}
 
-	public void setValue(BigDecimal value) {
-		this.value = value;
+	public void setOrderValue(BigDecimal orderValue) {
+		this.orderValue = orderValue;
 	}
 
 	public LocalDate getDeliveryDate() {
@@ -52,11 +73,11 @@ public class Order {
 		this.imageUrl = imageUrl;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getOrderDescription() {
+		return orderDescription;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setOrderDescription(String orderDescription) {
+		this.orderDescription = orderDescription;
 	}
 }
