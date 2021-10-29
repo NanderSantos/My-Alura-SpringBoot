@@ -14,28 +14,33 @@
 			<div class="jumbotron mb-0">
 				<h1 class="display-10">Meus Pedidos</h1>
 			</div>
-			<form action="/order/new" method="post">
-				<div>
-					<label for="productName">Produto</label>
-					<input name=productName placeholder="nome do produto" />
-					<small>Informe qual o nome do produto</small>
-				</div>
-				<div>
-					<label for="productUrl">Url do Produto</label>
-					<input name=productUrl placeholder="url do produto" />
-					<small>Procure em um site um produto que você deseja e cole a url da página aqui</small>
-				</div>
-				<div>
-					<label for="imageUrl">Url da Imagem</label>
-					<input name=imageUrl placeholder="url da imagem" />
-					<small>Copie o url de uma boa imagem do produto e cole aqui para ajudar os compradores</small>
-				</div>
-				<div>
-					<label for="description">Descrição</label>
-					<textarea name=description placeholder="Adicione detalhes importantes para ajudar o comprador" ></textarea>
-				</div>
-				<button type="submit">Cadastrar</button>
-			</form>
+			<div class="card mt-3">
+				<form th:object="${requestNewOrderDTO}" class="card-body" action="/order/new" method="post">
+					<div class="form-group">
+						<label for="productName">Produto</label>
+						<input th:field="*{productName}" th:errorclass="is-invalid" class="form-control" placeholder="nome do produto" />
+						<small>Informe qual o nome do produto</small>
+						<div class="invalid-feedback" th:errors="*{productName}">Erro: productName</div>
+					</div>
+					<div class="form-group">
+						<label for="productUrl">Url do Produto</label>
+						<input th:field="*{productUrl}" th:errorclass="is-invalid" class="form-control" placeholder="url do produto" />
+						<small>Procure em um site um produto que você deseja e cole a url da página aqui</small>
+						<div class="invalid-feedback" th:errors="*{productUrl}">Erro: productUrl</div>
+					</div>
+					<div class="form-group">
+						<label for="imageUrl">Url da Imagem</label>
+						<input th:field="*{imageUrl}" th:errorclass="is-invalid" class="form-control" placeholder="url da imagem" />
+						<small>Copie o url de uma boa imagem do produto e cole aqui para ajudar os compradores</small>
+						<div class="invalid-feedback" th:errors="*{imageUrl}">Erro: imageUrl</div>
+					</div>
+					<div class="form-group">
+						<label for="description">Descrição</label>
+						<textarea th:field="*{description}" class="form-control" placeholder="Adicione detalhes importantes para ajudar o comprador" ></textarea>
+					</div>
+					<button class="btn btn-primary" type="submit">Cadastrar</button>
+				</form>
+			</div>
 		</div>
 	</body>
 </html>

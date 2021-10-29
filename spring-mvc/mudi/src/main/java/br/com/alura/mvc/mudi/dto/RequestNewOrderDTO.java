@@ -1,17 +1,26 @@
 package br.com.alura.mvc.mudi.dto;
 
+import javax.validation.constraints.NotBlank;
+
 import br.com.alura.mvc.mudi.model.Order;
 
 public class RequestNewOrderDTO {
 
 	// Mesmos nomes que no input
+	
+	@NotBlank(message = "Esse campo é obrigatório!") //NotBlank.requestNewOrderDTO.productName
 	private String productName;
+	
+	@NotBlank(message = "Esse campo é obrigatório!") //NotBlank.requestNewOrderDTO.productUrl
 	private String productUrl;
+	
+	@NotBlank(message = "Esse campo é obrigatório!") //NotBlank.requestNewOrderDTO.imageUrl
 	private String imageUrl;
+	
 	private String description;
 
 	public Order toOrder() {
-		
+
 		return new Order(
 			this.productName,
 			this.productUrl,
