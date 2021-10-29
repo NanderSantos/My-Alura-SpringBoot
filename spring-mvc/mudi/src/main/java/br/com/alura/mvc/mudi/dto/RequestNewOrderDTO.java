@@ -8,13 +8,13 @@ public class RequestNewOrderDTO {
 
 	// Mesmos nomes que no input
 	
-	@NotBlank(message = "Esse campo é obrigatório!") //NotBlank.requestNewOrderDTO.productName
+	@NotBlank(message = "Esse campo é obrigatório!") //Também poderia ser feita a alteração pelo arquivo messages.properties alterando a propriedade NotBlank.requestNewOrderDTO.productName
 	private String productName;
 	
-	@NotBlank(message = "Esse campo é obrigatório!") //NotBlank.requestNewOrderDTO.productUrl
+	@NotBlank(message = "Esse campo é obrigatório!") //Também poderia ser feita a alteração pelo arquivo messages.properties alterando a propriedade NotBlank.requestNewOrderDTO.productUrl
 	private String productUrl;
 	
-	@NotBlank(message = "Esse campo é obrigatório!") //NotBlank.requestNewOrderDTO.imageUrl
+	@NotBlank(message = "Esse campo é obrigatório!") //Também poderia ser feita a alteração pelo arquivo messages.properties alterando a propriedade NotBlank.requestNewOrderDTO.imageUrl
 	private String imageUrl;
 	
 	private String description;
