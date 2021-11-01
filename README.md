@@ -201,3 +201,18 @@ Main topics:
 - [New LocalTime API](https://docs.oracle.com/javase/8/docs/api/java/time/LocalTime.html)
 - [New LocalDateTime API](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html)
 - [New ZonedDateTime API](https://docs.oracle.com/javase/8/docs/api/java/time/ZonedDateTime.html)
+
+---
+
+## **Kotlin**
+
+### First Course: "Kotlin: primeiros passos e Orientação a Objetos" ✔
+
+- Variables and Values
+- Loops and Conditionals
+- OOP
+- References and Copies
+- Properties
+- Visibility Modifiers
+- Primary and Secundary Constructors
+- Named Parameters
