@@ -42,6 +42,6 @@ public class OrderController {
 		Order order = requestNewOrderDTO.toOrder();
 		this.orderRepository.save(order);
 
-		return "order/form";
+		return "redirect:/home";
 	}
 }

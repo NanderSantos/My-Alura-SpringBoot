@@ -3,6 +3,7 @@ package br.com.alura.mvc.mudi.dto;
 import javax.validation.constraints.NotBlank;
 
 import br.com.alura.mvc.mudi.model.Order;
+import br.com.alura.mvc.mudi.model.OrderStatus;
 
 public class RequestNewOrderDTO {
 
@@ -25,7 +26,8 @@ public class RequestNewOrderDTO {
 			this.productName,
 			this.productUrl,
 			this.imageUrl,
-			this.description
+			this.description,
+			OrderStatus.ENTREGUE
 		);
 	}
 

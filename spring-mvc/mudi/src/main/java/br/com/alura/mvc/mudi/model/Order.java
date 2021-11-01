@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,6 +20,9 @@ public class Order implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Enumerated(EnumType.STRING)
+	private OrderStatus status;
+
 	private String name;
 	private BigDecimal orderValue;
 	private LocalDate deliveryDate;
@@ -27,11 +32,12 @@ public class Order implements Serializable {
 
 	public Order() {}
 
-	public Order(String name, String orderUrl, String imageUrl, String orderDescription) {
+	public Order(String name, String orderUrl, String imageUrl, String orderDescription, OrderStatus status) {
 		this.name = name;
 		this.orderUrl = orderUrl;
 		this.imageUrl = imageUrl;
 		this.orderDescription = orderDescription;
+		this.status = status;
 	}
 
 	public Long getId() {
@@ -40,6 +46,14 @@ public class Order implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public OrderStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(OrderStatus status) {
+		this.status = status;
 	}
 
 	public String getName() {
