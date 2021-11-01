@@ -172,6 +172,20 @@ Main topics:
 
 ---
 
+## **Spring MVC**
+
+### First Course: "Spring MVC: Crie um web app com Thymeleaf e Bootstrap" ✔
+
+Main topics:
+
+- Spring Boot
+- Spring Data JPA
+- MariaDB
+- Thymeleaf
+- Bootstrap
+
+---
+
 ## **Java Basics**
 
 ### First Course: "Java moderno: Tire proveito dos novos recursos do Java 8" ✔

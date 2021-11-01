@@ -27,7 +27,7 @@ public class RequestNewOrderDTO {
 			this.productUrl,
 			this.imageUrl,
 			this.description,
-			OrderStatus.ENTREGUE
+			OrderStatus.AGUARDANDO
 		);
 	}
 
