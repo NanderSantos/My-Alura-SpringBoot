@@ -2,38 +2,42 @@ fun main() {
 
     println("\nWelcome to ByteBank!\n")
 
-    val accountAlex = Account()
-    accountAlex.setHolder("Alex")
-    accountAlex.setNumber(1)
-    accountAlex.setBalance(100.0)
+    val accountAlex = Account(holder = "Alex")
+    accountAlex.deposit(100.0)
 
-    val accountFran = Account()
-
-    accountFran.setHolder("Fran")
-    accountFran.setNumber(2)
-    accountFran.setBalance(200.0)
+    val accountFran = Account(holder = "Fran", number = 2)
+    accountFran.deposit(value = 200.0)
 
     println(accountAlex.toString())
     println(accountFran.toString())
 
-    if(accountAlex.withdraw(200.0)) println("Done!")
+    if (accountAlex.withdraw(200.0)) println("Done!")
     else println("Failed!")
 
-    if(accountFran.deposit(1000.0)) println("Done!")
+    if (accountFran.deposit(1000.0)) println("Done!")
     else println("Failed!")
 
-    if(accountAlex.transfer(50.0, accountFran)) println("Done!")
+    if (accountAlex.transfer(value = 50.0, to = accountFran)) println("Done!")
     else println("Failed!")
 
     println(accountAlex.toString())
     println(accountFran.toString())
 }
 
-class Account {
+class Account(
 
-    private var holder = ""
-    private var number = 0
-    private var balance = 0.0
+    val holder: String,
+    val number: Int = 1,
+
+) {
+
+    var balance = 0.0
+        private set
+
+    init {
+
+        println("Criando uma conta para o usuário ${this.holder} com o número ${this.number}")
+    }
 
     override fun toString(): String {
 
@@ -45,13 +49,18 @@ class Account {
 
     fun deposit(value: Double): Boolean {
 
-        this.balance += value
-        return true
+        if (value > 0) {
+
+            this.balance += value
+            return true
+        }
+
+        return false
     }
 
     fun withdraw(value: Double): Boolean {
 
-        if(this.balance >= value) {
+        if (this.balance >= value) {
 
             this.balance -= value
             return true
@@ -71,11 +80,6 @@ class Account {
         }
 
         return false
-    }
-
-    fun getHolder(): String {
-
-        return this.holder
     }
 }
 
