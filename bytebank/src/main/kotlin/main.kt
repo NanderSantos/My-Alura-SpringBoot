@@ -1,27 +1,29 @@
 fun main() {
 
-    println("\nBem vindo ao ByteBank!\n")
-
-    // variables()
-    // testConditions(100.0)
-    // loops()
+    println("\nWelcome to ByteBank!\n")
 
     val accountAlex = Account()
-    accountAlex.holder = "Alex"
-    accountAlex.accountNumber = 1
-    accountAlex.accountBalance = 100.0
+    accountAlex.setHolder("Alex")
+    accountAlex.setNumber(1)
+    accountAlex.setBalance(100.0)
 
     val accountFran = Account()
-    accountFran.holder = "Fran"
-    accountFran.accountNumber = 2
-    accountFran.accountBalance = 200.0
+
+    accountFran.setHolder("Fran")
+    accountFran.setNumber(2)
+    accountFran.setBalance(200.0)
 
     println(accountAlex.toString())
     println(accountFran.toString())
 
-    accountAlex.withdraw(10.0)
-    accountFran.deposit(1000.0)
-    accountAlex.transfer(50.0, accountFran)
+    if(accountAlex.withdraw(200.0)) println("Done!")
+    else println("Failed!")
+
+    if(accountFran.deposit(1000.0)) println("Done!")
+    else println("Failed!")
+
+    if(accountAlex.transfer(50.0, accountFran)) println("Done!")
+    else println("Failed!")
 
     println(accountAlex.toString())
     println(accountFran.toString())
@@ -29,29 +31,51 @@ fun main() {
 
 class Account {
 
-    var holder = ""
-    var accountNumber = 0
-    var accountBalance = 0.0
+    private var holder = ""
+    private var number = 0
+    private var balance = 0.0
 
     override fun toString(): String {
 
-        return "Titular: ${this.holder}, Conta: ${this.accountNumber}, Saldo: ${this.accountBalance}"
+        return "Conta -> " +
+                "Titular: ${this.holder}, " +
+                "Número: ${this.number}, " +
+                "Saldo: ${this.balance}"
     }
 
-    fun deposit(value: Double) {
+    fun deposit(value: Double): Boolean {
 
-        this.accountBalance += value
+        this.balance += value
+        return true
     }
 
-    fun withdraw(value: Double) {
+    fun withdraw(value: Double): Boolean {
 
-        this.accountBalance -= value
+        if(this.balance >= value) {
+
+            this.balance -= value
+            return true
+        }
+
+        return false
     }
 
-    fun transfer(value: Double, to: Account) {
+    fun transfer(value: Double, to: Account): Boolean {
 
-        this.accountBalance -= value
-        to.withdraw(value)
+        if (this.balance >= value) {
+
+            this.balance -= value
+            to.withdraw(value)
+
+            return true
+        }
+
+        return false
+    }
+
+    fun getHolder(): String {
+
+        return this.holder
     }
 }
 
