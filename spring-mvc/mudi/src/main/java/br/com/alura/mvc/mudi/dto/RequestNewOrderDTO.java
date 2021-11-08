@@ -4,6 +4,7 @@ import javax.validation.constraints.NotBlank;
 
 import br.com.alura.mvc.mudi.model.Order;
 import br.com.alura.mvc.mudi.model.OrderStatus;
+import br.com.alura.mvc.mudi.model.User;
 
 public class RequestNewOrderDTO {
 
@@ -20,13 +21,14 @@ public class RequestNewOrderDTO {
 	
 	private String description;
 
-	public Order toOrder() {
+	public Order toOrder(User user) {
 
 		return new Order(
 			this.productName,
 			this.productUrl,
 			this.imageUrl,
 			this.description,
+			user,
 			OrderStatus.AGUARDANDO
 		);
 	}
