@@ -4,11 +4,11 @@ import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.alura.mvc.mudi.model.Order;
@@ -25,27 +25,13 @@ public class HomeController {
 	@GetMapping
 	public String home(Model model, Principal principal) {
 
-		List<Order> ordersList = orderRepository.findAllByUser(principal.getName());
+		List<Order> ordersList = orderRepository.findByStatus(
+			OrderStatus.ENTREGUE,
+			PageRequest.of(0, 10, Sort.by("deliveryDate").descending())
+		);
 
 		model.addAttribute("ordersList", ordersList);
 		
 		return "home";
-	}
-	
-	@GetMapping("/{status}")
-	public String status(@PathVariable("status") String status, Model model) {
-
-		List<Order> ordersList = orderRepository.findByStatus(OrderStatus.valueOf(status.toUpperCase()));
-
-		model.addAttribute("ordersList", ordersList);
-		model.addAttribute("status", status.toUpperCase());
-		
-		return "home";
-	}
-
-	@ExceptionHandler(IllegalArgumentException.class)
-	public String onError() {
-
-		return "redirect:/home";
 	}
 }
