@@ -17,7 +17,11 @@ public class User {
 	@Id
 	private String username;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
+	@OneToMany(
+		cascade = CascadeType.ALL,
+		mappedBy = "user",
+		fetch = FetchType.LAZY
+	)
 	private List<Order> orders = new ArrayList<>();
 
 	private String password;
@@ -45,5 +49,13 @@ public class User {
 
 	public void setEnabled(String enabled) {
 		this.enabled = enabled;
+	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
 	}
 }
