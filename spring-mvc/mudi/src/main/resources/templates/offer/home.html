@@ -1,42 +1,65 @@
 <!DOCTYPE html>
 <html>
-	<head th:replace="~{base :: head('Home')}"></head>
-	<body>
-		<div th:replace="~{base :: logo}"></div>
-		<div class="container">
-			<div th:replace="~{base :: pageTitle('Últimos Pedidos')}"></div>
-			<div class="card mb-3" th:each="order: ${ ordersList }">
-				<div class="card-header alert-dark" th:text="${ order.name }">Nome do Produto</div>
-				<div class="card-body">
-					<div class="row">
-						<div class="col-12 col-sm-8 mb-3">
-							<div class="row"> 
-								<div class="col-md-5">
-									Valor: 
-									<span th:if="${ order.orderValue } != null" th:text="${'R$ ' + #numbers.formatDecimal(order.orderValue, 3, 'POINT', 2, 'COMMA') }">200,99</span>
-								</div>
-								<div class="col-md-7">
-									Data da entrega: 
-									<span th:text="${ #temporals.format(order.deliveryDate, 'dd/MM/yyyy') }">10/02/2020</span>
-								</div>
+
+<head th:replace="~{base :: head('Oferta')}"></head>
+
+<body onload="onLoad()">
+	<div th:replace="~{base :: logo}"></div>
+	<div class="container" id="ofertas">
+		<div th:replace="~{base :: pageTitle('Faça sua Oferta')}"></div>
+		<div class="card mb-3" v-for="order in orders">
+			<div class="card-header alert-dark">{{ order.name }}</div>
+			<div class="card-body">
+				<div class="row">
+					<div class="col-12 col-sm-8 mb-3">
+						<div class="row">
+							<div class="col-md-5">
+								Valor:
+								<input />
 							</div>
-							<div>Produto</div>
-							<div>
-								<input class="form-control" th:value="${ order.orderUrl }" value="url do produto" />
-							</div>
-							<div>Descrição</div>
-							<div>
-								<textarea class="form-control" th:text="${ order.orderDescription }">descrição do pedido</textarea>
+							<div class="col-md-7">
+								Data da entrega:
+								<span>
+									<input />
+								</span>
 							</div>
 						</div>
-						<div class="col-12 col-sm-4">
-							<div>
-								<img class="img-thumbnail" th:src="${ order.imageUrl }" src="" />
-							</div>
+						<div>Produto</div>
+						<div>
+							<a v-bind:href="order.orderUrl">{{ order.name }}</a>
+						</div>
+						<div>Descrição</div>
+						<div>
+							<textarea class="form-control">{{ order.description }}</textarea>
+						</div>
+					</div>
+					<div class="col-12 col-sm-4">
+						<div>
+							<img class="img-thumbnail" v-bind:src="order.imageUrl"/>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</body>
+	</div>
+	<script>
+		function onLoad() {
+
+			var app = new Vue({
+				el: '#ofertas',
+				data: {
+					orders: []
+				},
+				mounted() {
+					axios
+						.get("http://localhost:8080/api/orders/aguardando")
+						.then(response => (this.orders = response.data))
+				}
+			});
+		}
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</body>
+
 </html>
