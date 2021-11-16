@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Offer {
 
@@ -18,6 +20,7 @@ public class Offer {
 	private Long id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
 	private Order order;
 
 	private BigDecimal value;
@@ -25,6 +28,10 @@ public class Offer {
 	private LocalDate deliveryDate;
 
 	private String comment;
+
+	public Offer() {
+
+	}
 
 	public Offer(String comment, LocalDate deliveryDate, BigDecimal value) {
 

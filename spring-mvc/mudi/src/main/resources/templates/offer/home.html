@@ -5,37 +5,47 @@
 
 <body onload="onLoad()">
 	<div th:replace="~{base :: logo}"></div>
-	<div class="container" id="ofertas">
+	<div class="container" id="offers">
 		<div th:replace="~{base :: pageTitle('Faça sua Oferta')}"></div>
 		<div class="card mb-3" v-for="order in orders">
 			<div class="card-header alert-dark">{{ order.name }}</div>
 			<div class="card-body">
 				<div class="row">
 					<div class="col-12 col-sm-8 mb-3">
-						<div class="row">
-							<div class="col-md-5">
-								Valor:
-								<input />
-							</div>
-							<div class="col-md-7">
-								Data da entrega:
-								<span>
-									<input />
-								</span>
-							</div>
-						</div>
-						<div>Produto</div>
-						<div>
+						<div class="mb-2">
+							Produto:
 							<a v-bind:href="order.orderUrl">{{ order.name }}</a>
 						</div>
 						<div>Descrição</div>
 						<div>
-							<textarea class="form-control">{{ order.description }}</textarea>
+							<textarea disabled="disabled" class="form-control">{{ order.orderDescription }}</textarea>
 						</div>
+						<div class="row mt-3">
+							<div class="col-md-5">
+								Valor:
+								<input class="form-control" v-bind:class="{'is-invalid':order.errors.value !== ''}"
+									v-model="order.orderValue" />
+								<div class="invalid-feedback" v-if="order.errors.value">{{ order.errors.value }}</div>
+							</div>
+							<div class="col-md-7">
+								Data da entrega:
+								<input class="form-control"
+									v-bind:class="{'is-invalid':order.errors.deliveryDate !== ''}"
+									v-model="order.deliveryDate" />
+								<div class="invalid-feedback" v-if="order.errors.deliveryDate">{{
+									order.errors.deliveryDate }}</div>
+							</div>
+						</div>
+						<div class="mt-2">
+							<label>Comentário</label>
+							<textarea class="form-control" v-model="order.comment"></textarea>
+						</div>
+						<button class="btn btn-success mt-3" type="submit" v-if="order.offerSent">Oferta Enviada</button>
+						<button class="btn btn-primary mt-3" type="submit" v-else="" v-on:click="sendOffer(order)">Enviar Oferta</button>
 					</div>
 					<div class="col-12 col-sm-4">
 						<div>
-							<img class="img-thumbnail" v-bind:src="order.imageUrl"/>
+							<img class="img-thumbnail" v-bind:src="order.imageUrl" />
 						</div>
 					</div>
 				</div>
@@ -46,14 +56,51 @@
 		function onLoad() {
 
 			var app = new Vue({
-				el: '#ofertas',
+				el: '#offers',
 				data: {
 					orders: []
 				},
 				mounted() {
 					axios
 						.get("http://localhost:8080/api/orders/aguardando")
-						.then(response => (this.orders = response.data))
+						.then(response => {
+
+							response.data.forEach(order => {
+
+								order.offerSent = false;
+								order.errors = {
+									value: "",
+									deliveryDate: "",
+								}
+							});
+
+							this.orders = response.data
+						});
+				},
+				methods: {
+					sendOffer: (order) => {
+
+						order.errors = {
+							value: "",
+							deliveryDate: "",
+						};
+
+						axios
+							.post("http://localhost:8080/api/offers", {
+
+								orderId: order.id,
+								value: order.orderValue,
+								deliveryDate: order.deliveryDate,
+								comment: order.comment,
+							})
+							.then(response => order.offerSent = true)
+							.catch(error => {
+
+								error.response.data.errors.forEach(error => {
+									order.errors[error.field] = error.defaultMessage;
+								});
+							});
+					}
 				}
 			});
 		}

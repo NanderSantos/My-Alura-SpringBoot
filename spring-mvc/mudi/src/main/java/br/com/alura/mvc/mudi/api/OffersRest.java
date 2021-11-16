@@ -2,8 +2,12 @@ package br.com.alura.mvc.mudi.api;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +24,7 @@ public class OffersRest {
 	private OrderRepository orderRepository;
 
 	@PostMapping
-	public Offer newOffer(RequestNewOfferDTO requestNewOfferDTO) {
+	public ResponseEntity<Offer> newOffer(@Valid @RequestBody RequestNewOfferDTO requestNewOfferDTO) {
 
 		Optional<Order> optional = orderRepository.findById(requestNewOfferDTO.getOrderId());
 
@@ -35,6 +39,6 @@ public class OffersRest {
 
 		orderRepository.save(order);
 
-		return offer;
+		return ResponseEntity.ok().body(offer);
 	}
 }
