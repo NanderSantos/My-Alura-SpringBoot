@@ -39,6 +39,7 @@ public class Order {
 		mappedBy = "order",
 		fetch = FetchType.LAZY
 	)
+	@JsonIgnore
 	private List<Offer> offers = new ArrayList<>();
 
 	private String name;
