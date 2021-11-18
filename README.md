@@ -219,6 +219,21 @@ Main topics:
 
 ---
 
+## **Software Architecture and Design**
+
+### First Course: "SOLID com Java: Princípios da programação orientada a objetos" ✔
+
+Main topics:
+
+- Cohesion
+- Coupling
+- Encapsulation
+- Single Responsability Principle
+- Inheritance
+- Abstraction
+
+---
+
 ## **Kotlin**
 
 ### First Course: "Kotlin: primeiros passos e Orientação a Objetos" ✔
