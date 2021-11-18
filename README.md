@@ -186,6 +186,21 @@ Main topics:
 
 ---
 
+### Second Course: "Spring MVC: Autenticação com Spring Security, API Rest e AJAX" ✔
+
+Main topics:
+
+- Spring Security
+- REST API
+- AJAX
+- Axios
+- Interceptors
+- Pagination
+- Cache
+- VueJS
+
+---
+
 ## **Java Basics**
 
 ### First Course: "Java moderno: Tire proveito dos novos recursos do Java 8" ✔
