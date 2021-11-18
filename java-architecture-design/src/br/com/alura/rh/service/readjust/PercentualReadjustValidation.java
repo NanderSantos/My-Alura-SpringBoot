@@ -1,6 +1,6 @@
-package br.com.alura.rh.service;
+package br.com.alura.rh.service.readjust;
 
-import br.com.alura.rh.ExceptionValidation;
+import br.com.alura.rh.ValidationException;
 import br.com.alura.rh.model.Employee;
 
 import java.math.BigDecimal;
@@ -16,7 +16,7 @@ public class PercentualReadjustValidation implements ReadjustValidation {
         );
 
         if(percentualReadjust.compareTo(new BigDecimal("0.4")) > 0) {
-            throw new ExceptionValidation("Reajuste não pode ser superior a 40% do salário");
+            throw new ValidationException("Reajuste não pode ser superior a 40% do salário");
         }
     }
 }

@@ -1,6 +1,6 @@
-package br.com.alura.rh.service;
+package br.com.alura.rh.service.readjust;
 
-import br.com.alura.rh.ExceptionValidation;
+import br.com.alura.rh.ValidationException;
 import br.com.alura.rh.model.Employee;
 
 import java.math.BigDecimal;
@@ -16,7 +16,7 @@ public class LastReadjustPeriodicityValidation implements ReadjustValidation {
         long monthsSinceLastSalaryReadjust = ChronoUnit.MONTHS.between(actualDate, lastReadjustDate);
 
         if(monthsSinceLastSalaryReadjust < 6) {
-            throw new ExceptionValidation("Intervalo de reajuste deve se de no mínimo 6 meses");
+            throw new ValidationException("Intervalo de reajuste deve se de no mínimo 6 meses");
         }
     }
 }
