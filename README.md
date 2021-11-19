@@ -240,6 +240,17 @@ Main topics:
 
 ---
 
+### Second Course: "Design Patterns em Java I: Introdução às boas práticas de programação" ✔
+
+Main Topics:
+
+- [Strategy Pattern](https://refactoring.guru/design-patterns/strategy)
+- [Chain of Responsability Pattern](https://refactoring.guru/design-patterns/chain-of-responsibility)
+- [Template Method Pattern](https://refactoring.guru/design-patterns/template-method)
+- [State Pattern](https://refactoring.guru/design-patterns/state)
+- [Command Pattern](https://refactoring.guru/design-patterns/command)
+- [Observer Pattern](https://refactoring.guru/design-patterns/observer)
+
 ## **Kotlin**
 
 ### First Course: "Kotlin: primeiros passos e Orientação a Objetos" ✔
