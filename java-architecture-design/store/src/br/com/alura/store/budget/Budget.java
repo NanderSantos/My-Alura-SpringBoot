@@ -1,6 +1,7 @@
 package br.com.alura.store.budget;
 
 import br.com.alura.store.budget.situation.Situation;
+import br.com.alura.store.budget.situation.SituationFinished;
 import br.com.alura.store.budget.situation.SituationUnderReview;
 
 import java.math.BigDecimal;
@@ -21,6 +22,10 @@ public class Budget {
 
         BigDecimal extraDiscountValue = this.situation.calculateExtraDiscount(this);
         this.value = this.value.subtract(extraDiscountValue);
+    }
+
+    public boolean isFinished() {
+        return this.situation instanceof SituationFinished;
     }
 
     public void approve() {
