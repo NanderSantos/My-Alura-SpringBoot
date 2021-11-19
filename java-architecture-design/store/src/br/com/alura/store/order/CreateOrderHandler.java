@@ -1,15 +1,17 @@
 package br.com.alura.store.order;
 
 import br.com.alura.store.budget.Budget;
+import br.com.alura.store.order.action.CreateOrderAction;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class CreateOrderHandler {
 
-    // Injeção de dependências: OrderRepository, EmailService...
+    private List<CreateOrderAction> actions;
 
-    public CreateOrderHandler(/* Injeção de dependências */) {
-
+    public CreateOrderHandler(List<CreateOrderAction> actions) {
+        this.actions = actions;
     }
 
     public void exec(CreateOrder createOrderData) {
@@ -23,7 +25,6 @@ public class CreateOrderHandler {
                 )
         );
 
-        System.out.println("Salvando pedidos no banco de dados...");
-        System.out.println("Enviando email com dados do novo pedido...");
+        actions.forEach(a -> a.exec(order));
     }
 }
