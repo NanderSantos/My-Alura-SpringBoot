@@ -8,12 +8,12 @@ public class DiscountCalculator {
 
     public BigDecimal calculate(Budget budget) {
 
-        Discount discount = new DiscountBudgetWithMoreThen5Items(
+        Discount discountChain = new DiscountBudgetWithMoreThen5Items(
                 new DiscountBudgetWithValueGreatherThen500(
                         new DiscountNotApplied()
                 )
         );
 
-        return discount.calculate(budget);
+        return discountChain.calculate(budget);
     }
 }

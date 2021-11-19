@@ -11,10 +11,10 @@ public class DiscountTest {
 
         DiscountCalculator discountCalculator = new DiscountCalculator();
 
-        Budget firstBudget = new Budget(new BigDecimal(1000), 5);
+        Budget firstBudget = new Budget(new BigDecimal(200), 6);
         System.out.println(discountCalculator.calculate(firstBudget));
 
-        Budget secondBudget = new Budget(new BigDecimal(1000), 6);
+        Budget secondBudget = new Budget(new BigDecimal(1000), 1);
         System.out.println(discountCalculator.calculate(secondBudget));
     }
 }
