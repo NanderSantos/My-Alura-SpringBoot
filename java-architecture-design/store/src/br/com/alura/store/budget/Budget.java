@@ -1,6 +1,7 @@
 package br.com.alura.store.budget;
 
 import br.com.alura.store.budget.situation.Situation;
+import br.com.alura.store.budget.situation.SituationUnderReview;
 
 import java.math.BigDecimal;
 
@@ -13,6 +14,7 @@ public class Budget {
     public Budget(BigDecimal value, int itemsQuantity) {
         this.value = value;
         this.itemsQuantity = itemsQuantity;
+        this.situation = new SituationUnderReview();
     }
 
     public void applyExtraDiscount() {
