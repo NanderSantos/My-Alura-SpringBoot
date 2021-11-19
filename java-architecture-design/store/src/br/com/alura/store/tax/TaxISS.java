@@ -4,7 +4,7 @@ import br.com.alura.store.budget.Budget;
 
 import java.math.BigDecimal;
 
-public class ISS implements Tax {
+public class TaxISS implements Tax {
 
     @Override
     public BigDecimal calculate(Budget budget) {
