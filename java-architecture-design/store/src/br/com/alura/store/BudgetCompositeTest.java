@@ -2,10 +2,11 @@ package br.com.alura.store;
 
 import br.com.alura.store.budget.Budget;
 import br.com.alura.store.budget.BudgetItem;
+import br.com.alura.store.budget.BudgetProxy;
 
 import java.math.BigDecimal;
 
-public class BudgetCompositionTest {
+public class BudgetCompositeTest {
 
     public static void main(String[] args) {
 
@@ -17,6 +18,9 @@ public class BudgetCompositionTest {
         newBudget.addItem(new BudgetItem(new BigDecimal("500")));
         newBudget.addItem(oldBudget);
 
-        System.out.println(newBudget.getValue());
+        BudgetProxy newBudgetProxy = new BudgetProxy(newBudget);
+
+        System.out.println(newBudgetProxy.getValue());
+        System.out.println(newBudgetProxy.getValue());
     }
 }
