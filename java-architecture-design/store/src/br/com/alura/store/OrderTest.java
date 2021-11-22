@@ -2,6 +2,7 @@ package br.com.alura.store;
 
 import br.com.alura.store.order.CreateOrder;
 import br.com.alura.store.order.CreateOrderHandler;
+import br.com.alura.store.order.action.OrderLog;
 import br.com.alura.store.order.action.SaveOrderToDatabaseAction;
 import br.com.alura.store.order.action.SendOrderMailAction;
 
@@ -23,10 +24,9 @@ public class OrderTest {
         );
 
         CreateOrderHandler createOrderHandler = new CreateOrderHandler(
-                Arrays.asList(
-                        new SaveOrderToDatabaseAction(),
-                        new SendOrderMailAction()
-                )
+            new SaveOrderToDatabaseAction(),
+            new SendOrderMailAction(),
+            new OrderLog()
         );
 
         createOrderHandler.exec(orderCreated);

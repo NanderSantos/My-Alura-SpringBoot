@@ -5,14 +5,15 @@ import br.com.alura.store.budget.BudgetItem;
 import br.com.alura.store.order.action.CreateOrderAction;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 public class CreateOrderHandler {
 
     private List<CreateOrderAction> actions;
 
-    public CreateOrderHandler(List<CreateOrderAction> actions) {
-        this.actions = actions;
+    public CreateOrderHandler(CreateOrderAction... actions) {
+        this.actions = Arrays.asList(actions);
     }
 
     public void exec(CreateOrder createOrderData) {
