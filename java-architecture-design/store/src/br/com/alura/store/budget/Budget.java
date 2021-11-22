@@ -5,23 +5,31 @@ import br.com.alura.store.budget.situation.SituationFinished;
 import br.com.alura.store.budget.situation.SituationUnderReview;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Budget {
+public class Budget implements Budgetable {
 
     private BigDecimal value;
-    private int itemsQuantity;
     private Situation situation;
+    private List<Budgetable> items;
 
-    public Budget(BigDecimal value, int itemsQuantity) {
-        this.value = value;
-        this.itemsQuantity = itemsQuantity;
+    public Budget() {
+        this.value = BigDecimal.ZERO;
         this.situation = new SituationUnderReview();
+        this.items = new ArrayList<>();
     }
 
     public void applyExtraDiscount() {
 
         BigDecimal extraDiscountValue = this.situation.calculateExtraDiscount(this);
         this.value = this.value.subtract(extraDiscountValue);
+    }
+
+    public void addItem(Budgetable item) {
+
+        this.value = this.value.add(item.getValue());
+        this.items.add(item);
     }
 
     public boolean isFinished() {
@@ -40,6 +48,7 @@ public class Budget {
         this.situation.finish(this);
     }
 
+    @Override
     public BigDecimal getValue() {
         return value;
     }
@@ -49,11 +58,7 @@ public class Budget {
     }
 
     public int getItemsQuantity() {
-        return itemsQuantity;
-    }
-
-    public void setItemsQuantity(int itemsQuantity) {
-        this.itemsQuantity = itemsQuantity;
+        return items.size();
     }
 
     public Situation getSituation() {
@@ -62,5 +67,13 @@ public class Budget {
 
     public void setSituation(Situation situation) {
         this.situation = situation;
+    }
+
+    public List<Budgetable> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Budgetable> items) {
+        this.items = items;
     }
 }

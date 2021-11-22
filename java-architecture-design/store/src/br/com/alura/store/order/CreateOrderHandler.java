@@ -1,6 +1,7 @@
 package br.com.alura.store.order;
 
 import br.com.alura.store.budget.Budget;
+import br.com.alura.store.budget.BudgetItem;
 import br.com.alura.store.order.action.CreateOrderAction;
 
 import java.time.LocalDateTime;
@@ -16,13 +17,13 @@ public class CreateOrderHandler {
 
     public void exec(CreateOrder createOrderData) {
 
+        Budget budget = new Budget();
+        budget.addItem(new BudgetItem(createOrderData.getBudgetValue()));
+
         Order order = new Order(
                 createOrderData.getClient(),
                 LocalDateTime.now(),
-                new Budget(
-                        createOrderData.getBudgetValue(),
-                        createOrderData.getItemsQuantity()
-                )
+                budget
         );
 
         actions.forEach(a -> a.exec(order));
