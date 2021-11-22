@@ -251,6 +251,20 @@ Main Topics:
 - [Command Pattern](https://refactoring.guru/design-patterns/command)
 - [Observer Pattern](https://refactoring.guru/design-patterns/observer)
 
+---
+
+### Third Course: "Design Patterns em Java II: Avançando nas boas práticas de programação" ✔
+
+Main Topics:
+
+- [Adapter](https://refactoring.guru/design-patterns/adapter)
+- [Decorator](https://refactoring.guru/design-patterns/decorator)
+- [Composite](https://refactoring.guru/design-patterns/composite)
+- [Facade](https://refactoring.guru/design-patterns/facade)
+- [Proxy](https://refactoring.guru/design-patterns/proxy)
+
+---
+
 ## **Kotlin**
 
 ### First Course: "Kotlin: primeiros passos e Orientação a Objetos" ✔
