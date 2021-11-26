@@ -265,6 +265,20 @@ Main Topics:
 
 ---
 
+## **Testes Automatizados**
+
+### First Course: "TDD e Java: Testes automatizados com JUnit" ✔
+
+Main topics:
+
+- Test Automation
+- JUnit
+- TDD: Test-Driven Development
+- Exceptions Tests
+- JUnit Annotations and Features
+
+---
+
 ## **Kotlin**
 
 ### First Course: "Kotlin: primeiros passos e Orientação a Objetos" ✔
