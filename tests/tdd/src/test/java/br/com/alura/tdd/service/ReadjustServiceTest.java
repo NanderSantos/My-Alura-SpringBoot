@@ -1,7 +1,7 @@
 package br.com.alura.tdd.service;
 
 import br.com.alura.tdd.modelo.Employee;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -10,48 +10,58 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ReadjustServiceTest {
 
-    @Test
-    public void readjustShouldBeThreePercentWhenPerformanceIsUnsatisfactory() {
+    private ReadjustService readjustService;
+    private  Employee employee;
 
-        ReadjustService readjustService = new ReadjustService();
-        Employee employee = new Employee(
+    @BeforeAll
+    static void initAll() {
+
+        System.out.println("Testes " + ReadjustService.class.getSimpleName() + " inicializados!");
+    }
+
+    @BeforeEach
+    public void init() {
+
+        System.out.println("Teste inicializado!");
+
+        this.readjustService = new ReadjustService();
+        this.employee = new Employee(
                 "Ana",
                 LocalDate.now(),
                 new BigDecimal("1000")
         );
+    }
 
-        readjustService.concernReadjust(employee, Performance.UNSATISFACTORY);
+    @AfterEach
+    public void finish() {
 
-        assertEquals(new BigDecimal("1030.00"), employee.getSalary());
+        System.out.println("Teste realizado!");
+    }
+
+    @AfterAll
+    static void finishAll() {
+
+        System.out.println("Testes " + ReadjustService.class.getSimpleName() + " finalizados!");
+    }
+
+    @Test
+    public void readjustShouldBeThreePercentWhenPerformanceIsUnsatisfactory() {
+
+        this.readjustService.concernReadjust(this.employee, Performance.UNSATISFACTORY);
+        assertEquals(new BigDecimal("1030.00"), this.employee.getSalary());
     }
 
     @Test
     public void readjustShouldBeFifteenPercentWhenPerformanceIsOK() {
 
-        ReadjustService readjustService = new ReadjustService();
-        Employee employee = new Employee(
-                "Ana",
-                LocalDate.now(),
-                new BigDecimal("1000")
-        );
-
-        readjustService.concernReadjust(employee, Performance.OK);
-
-        assertEquals(new BigDecimal("1150.00"), employee.getSalary());
+        this.readjustService.concernReadjust(this.employee, Performance.OK);
+        assertEquals(new BigDecimal("1150.00"), this.employee.getSalary());
     }
 
     @Test
     public void readjustShouldBeTwentyPercentWhenPerformanceIsExcellent() {
 
-        ReadjustService readjustService = new ReadjustService();
-        Employee employee = new Employee(
-                "Ana",
-                LocalDate.now(),
-                new BigDecimal("1000")
-        );
-
-        readjustService.concernReadjust(employee, Performance.EXCELLENT);
-
-        assertEquals(new BigDecimal("1200.00"), employee.getSalary());
+        this.readjustService.concernReadjust(this.employee, Performance.EXCELLENT);
+        assertEquals(new BigDecimal("1200.00"), this.employee.getSalary());
     }
 }

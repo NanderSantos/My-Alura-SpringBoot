@@ -13,11 +13,18 @@ public class Employee {
 	public Employee(String name, LocalDate admissionDate, BigDecimal salary) {
 		this.name = name;
 		this.admissionDate = admissionDate;
-		this.salary = salary.setScale(2, RoundingMode.HALF_UP);
+		this.salary = salary;
+		this.setSalaryScale();
 	}
 
 	public void readjustSalary(BigDecimal readjust) {
-		this.salary = this.salary.add(readjust).setScale(2, RoundingMode.HALF_UP);
+		this.salary = this.salary.add(readjust);
+		this.setSalaryScale();
+	}
+
+	private void setSalaryScale() {
+		// Métodos privados não precisam ser testados, eles serão testados indiretamente nos testes dos métodos públicos
+		this.salary = this.salary.setScale(2, RoundingMode.HALF_UP);
 	}
 
 	public String getName() {
@@ -41,6 +48,7 @@ public class Employee {
 	}
 
 	public void setSalary(BigDecimal salary) {
-		this.salary = salary.setScale(2, RoundingMode.HALF_UP);
+		this.salary = salary;
+		this.setSalaryScale();
 	}
 }
