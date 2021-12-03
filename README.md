@@ -279,6 +279,16 @@ Main topics:
 
 ---
 
+### Second Course: "Testes de Integração: Testes de SQL e DAOs automatizados em Java" ✔
+
+Main topics:
+
+- JUnit Integration Tests
+- DAOs
+- Test Data Builder
+
+---
+
 ## **Kotlin**
 
 ### First Course: "Kotlin: primeiros passos e Orientação a Objetos" ✔
