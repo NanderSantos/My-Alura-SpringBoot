@@ -2,7 +2,9 @@ package br.com.alura.auction.dao;
 
 import br.com.alura.auction.model.Leilao;
 import br.com.alura.auction.model.Usuario;
-import br.com.alura.auction.util.JPAUtil;
+import br.com.alura.auction.util.builder.UsuarioBuilder;
+import util.JPAUtil;
+import util.builder.LeilaoBuilder;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,7 +36,19 @@ class LeilaoDaoTest {
     @Test
     void deveriaCadastrarUmLeilao() {
 
-        Leilao leilao = criarLeilao();
+        Usuario usuario = new UsuarioBuilder()
+                .comNome("Fulano")
+                .comEmail("fulano@email.com")
+                .comSenha("12345678")
+                .criarEPersistir(this.em);
+
+        Leilao leilao = new LeilaoBuilder()
+                .comNome("Mochila")
+                .comValorInicial("500")
+                .comData(LocalDate.now())
+                .comUsuario(usuario)
+                .criar();
+
         leilao = this.dao.salvar(leilao);
 
         Leilao leilaoSalvo = this.dao.buscarPorId(leilao.getId());
@@ -45,8 +59,18 @@ class LeilaoDaoTest {
     @Test
     void deveriaAtualizarUmLeilao() {
 
-        Leilao leilao = criarLeilao();
-        leilao = this.dao.salvar(leilao);
+        Usuario usuario = new UsuarioBuilder()
+                .comNome("Fulano")
+                .comEmail("fulano@email.com")
+                .comSenha("12345678")
+                .criarEPersistir(this.em);
+
+        Leilao leilao = new LeilaoBuilder()
+                .comNome("Mochila")
+                .comValorInicial("500")
+                .comData(LocalDate.now())
+                .comUsuario(usuario)
+                .criarEPersistir(this.em);
 
         leilao.setNome("Celular");
         leilao.setValorInicial(new BigDecimal("400"));
@@ -69,37 +93,5 @@ class LeilaoDaoTest {
 
     @Test
     void buscarLeiloesDoUsuario() {
-    }
-
-    private Leilao criarLeilao() {
-
-        return new Leilao(
-                "Mochila",
-                new BigDecimal("70"),
-                LocalDate.now(),
-                criarEPersistirUsuario()
-        );
-    }
-
-    private Leilao criarEPersistirLeilao() {
-
-        Leilao leilao =  new Leilao(
-                "Mochila",
-                new BigDecimal("70"),
-                LocalDate.now(),
-                criarEPersistirUsuario()
-        );
-
-        this.em.persist(leilao);
-
-        return leilao;
-    }
-
-    private Usuario criarEPersistirUsuario() {
-
-        Usuario usuario =  new Usuario("fulano", "fulano@email.com", "12345678");
-        this.em.persist(usuario);
-
-        return usuario;
     }
 }

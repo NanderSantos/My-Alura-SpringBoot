@@ -1,4 +1,4 @@
-package br.com.alura.auction.util;
+package util;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

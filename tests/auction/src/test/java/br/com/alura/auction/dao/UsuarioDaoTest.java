@@ -1,7 +1,8 @@
 package br.com.alura.auction.dao;
 
 import br.com.alura.auction.model.Usuario;
-import br.com.alura.auction.util.JPAUtil;
+import br.com.alura.auction.util.builder.UsuarioBuilder;
+import util.JPAUtil;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,29 +31,41 @@ class UsuarioDaoTest {
 
     @Test
     void deveriaEncontrarUsuarioCadastrado() {
-        Usuario usuario = criarUsuario();
+
+        Usuario usuario = new UsuarioBuilder()
+                .comNome("Fulano")
+                .comEmail("fulano@email.com")
+                .comSenha("12345678")
+                .criarEPersistir(this.em);
+
         Usuario usuarioEncontrado = this.dao.buscarPorUsername(usuario.getNome());
+
         assertNotNull(usuarioEncontrado);
     }
 
     @Test
     void naoDeveriaEncontrarUsuarioNaoCadastrado() {
-        criarUsuario();
+
+        new UsuarioBuilder()
+                .comNome("Fulano")
+                .comEmail("fulano@email.com")
+                .comSenha("12345678")
+                .criarEPersistir(this.em);
+
         assertThrows(NoResultException.class, () -> this.dao.buscarPorUsername("fulano1"));
     }
 
     @Test
     void deveriaRemoverUmUsuario() {
-        Usuario usuario = criarUsuario();
+
+        Usuario usuario = new UsuarioBuilder()
+                .comNome("Fulano")
+                .comEmail("fulano@email.com")
+                .comSenha("12345678")
+                .criarEPersistir(this.em);
+
         this.dao.deletar(usuario);
+
         assertThrows(NoResultException.class, () -> this.dao.buscarPorUsername(usuario.getNome()));
-    }
-
-    private Usuario criarUsuario() {
-
-        Usuario usuario =  new Usuario("fulano", "fulano@email.com", "12345678");
-        this.em.persist(usuario);
-
-        return usuario;
     }
 }
