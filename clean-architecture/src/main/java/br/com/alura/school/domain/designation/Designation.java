@@ -1,3 +1,7 @@
+package br.com.alura.school.domain.designation;
+
+import br.com.alura.school.domain.student.Student;
+
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 

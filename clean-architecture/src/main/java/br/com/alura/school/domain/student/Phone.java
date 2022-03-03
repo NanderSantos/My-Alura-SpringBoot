@@ -1,3 +1,5 @@
+package br.com.alura.school.domain.student;
+
 public class Phone {
 
     private String ddd;

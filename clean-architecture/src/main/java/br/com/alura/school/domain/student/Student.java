@@ -1,3 +1,5 @@
+package br.com.alura.school.domain.student;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +14,14 @@ public class Student {
         this.cpf = cpf;
         this.name = name;
         this.email = email;
+    }
+
+    public void print() {
+        System.out.println("Nome: " + this.name);
+        System.out.println("CPF: " + this.cpf.getNumber());
+        System.out.println("E-mail: " + this.email.getAddress());
+        this.phones.forEach(phone -> System.out.println("Telefone: " + phone.getFormattedNumber()));
+        System.out.println();
     }
 
     public void addPhone(String ddd, String number) {
