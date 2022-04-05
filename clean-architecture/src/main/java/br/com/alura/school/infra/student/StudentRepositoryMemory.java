@@ -21,7 +21,7 @@ public class StudentRepositoryMemory implements StudentRepository {
     public Student getByCPF(CPF cpf) {
         return this.enrolledStudents
                 .stream()
-                .filter(student -> student.getCpf().equals(cpf))
+                .filter(student -> student.getCpf().getNumber().equals(cpf.getNumber()))
                 .findFirst()
                 .orElseThrow(() -> new StudentNotFoundException(cpf));
     }
