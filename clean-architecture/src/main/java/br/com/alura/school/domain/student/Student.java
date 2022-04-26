@@ -26,6 +26,11 @@ public class Student {
     }
 
     public void addPhone(String ddd, String number) {
+
+        if (this.phones.size() == 2) {
+            throw new IllegalArgumentException("O número máximo de telefones por aluno já foi atingido!");
+        }
+
         this.phones.add(new Phone(ddd, number));
     }
 
